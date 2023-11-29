@@ -29,11 +29,11 @@ class WinVid(Screen):
 
         # Background gradient
         bgimg = MDBoxLayout(size_hint=(1, 1))
-        bgimg.add_widget(Image(source='background.png', allow_stretch=True, keep_ratio=False, size_hint=(1, 1)))
+        bgimg.add_widget(Image(source='data/background.png', allow_stretch=True, keep_ratio=False, size_hint=(1, 1)))
 
         # Loading screen video
         box = MDBoxLayout(size_hint=(1, 0.7), pos_hint={'y': 0.13})
-        vid = Video(source="vid.mp4", size_hint=(1, 1))
+        vid = Video(source="data/vid.mp4", size_hint=(1, 1))
         vid.bind(eos=self.done)
         vid.state = 'play'
         box.add_widget(vid)
@@ -53,7 +53,7 @@ class HomeScreen(Screen):
 
         # Background gradient
         bgbox = MDBoxLayout(size_hint=(1, 1))
-        bgbox.add_widget(Image(source='background.png', allow_stretch=True, keep_ratio=False, size_hint=(1, 1)))
+        bgbox.add_widget(Image(source='data/background.png', allow_stretch=True, keep_ratio=False, size_hint=(1, 1)))
         self.add_widget(bgbox)
 
         # Page title
@@ -150,7 +150,7 @@ class TalkBot(Screen):
     def __init__(self, **kwa):
         super(TalkBot, self).__init__(**kwa)
         # Background Video
-        video = Video(source='speechvid.mp4', state='play', options={'eos': 'loop'}, allow_stretch=True, keep_ratio=False, size_hint_y=1, volume=0)  # Set the size according to your needs
+        video = Video(source='data/speechvid.mp4', state='play', options={'eos': 'loop'}, allow_stretch=True, keep_ratio=False, size_hint_y=1, volume=0)  # Set the size according to your needs
         video.bind(eos=self.on_eos)
         self.add_widget(video)
         Clock.schedule_once(self.init)
@@ -243,7 +243,7 @@ class Scren3(Screen):
     def __init__(self, **kwa):
         super(Scren3, self).__init__(**kwa)
 
-        bgimg = Image(source="background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
+        bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
         self.add_widget(bgimg)
 
         # label for displaying stats report text
@@ -263,7 +263,7 @@ class Decide(Screen):
     def __init__(self, **kwa):
         super(Decide, self).__init__(**kwa)
 
-        bg = Image(source="background.png", allow_stretch=True, keep_ratio=False, size_hint_y=1)
+        bg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint_y=1)
         self.add_widget(bg)
 
         scrinfo = MDLabel(text="Take a test by answering this question or ask questions to BlissBuddy!", font_style="H4", pos_hint={'x': 0.03, 'y': 0.4}, bold=True, underline=True)
@@ -435,7 +435,7 @@ class TalkAI(Screen):
         self.score4 = 0
         self.score5 = 0
 
-        bgimg = Image(source="background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
+        bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
         self.add_widget(bgimg)
         
         heading = MDLabel(text="Answer some questions:", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
@@ -822,7 +822,7 @@ class TalkAIPg2(Screen):
         self.score4 = 0
         self.score5 = 0
 
-        bgimg = Image(source="background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
+        bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
         self.add_widget(bgimg)
         
         heading = MDLabel(text="Answer some questions:", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
@@ -1231,7 +1231,7 @@ class TalkAIPg3(Screen):
         self.score4 = 0
         self.score5 = 0
 
-        bgimg = Image(source="background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
+        bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
         self.add_widget(bgimg)
         
         heading = MDLabel(text="Answer some questions:", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
@@ -1638,7 +1638,7 @@ class TalkAiPg4(Screen):
         self.score4 = 0
         self.score5 = 0
 
-        bgimg = Image(source="background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
+        bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
         self.add_widget(bgimg)
         
         heading = MDLabel(text="Answer some questions:", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
@@ -2027,7 +2027,7 @@ class HamApg1(Screen):
         self.score4 = 0
         self.score5 = 0
 
-        bgimg = Image(source="background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
+        bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
         self.add_widget(bgimg)
         
         heading = MDLabel(text="Answer some questions:", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
@@ -2458,7 +2458,7 @@ class HamAPg2(Screen):
         self.score4 = 0
         self.score5 = 0
 
-        bgimg = Image(source="background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
+        bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
         self.add_widget(bgimg)
         
         heading = MDLabel(text="Answer some questions:", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
@@ -2890,7 +2890,7 @@ class HamAPg3(Screen):
         self.score4 = 0
         self.score5 = 0
 
-        bgimg = Image(source="background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
+        bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
         self.add_widget(bgimg)
         
         heading = MDLabel(text="Answer some questions:", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
@@ -3160,7 +3160,7 @@ class HamResult(Screen):
     def __init__(self, **kwa):
         super(HamResult, self).__init__(**kwa)
 
-        bgimg = Image(source="background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
+        bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
         self.add_widget(bgimg)
         
         heading = MDLabel(text="Here are your results!", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
@@ -3191,19 +3191,19 @@ class HamResult(Screen):
         self.status_img = ""
         if hamA_score < 7:
             self.status = "Normal"
-            self.status_img = Image(source="four.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch=True)
+            self.status_img = Image(source="data/four.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch=True)
         elif hamA_score > 6 and hamA_score < 18:
             self.status = "Mild Anxiety"
-            self.status_img = Image(source="three.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch=True)
+            self.status_img = Image(source="data/three.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch=True)
         elif hamA_score > 17 and hamA_score < 25:
             self.status = "Moderate Anxiety"
-            self.status_img = Image(source="two.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/two.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
         elif hamA_score > 24:
             self.status = "Severe Anxiety"
-            self.status_img = Image(source="one.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/one.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
         elif hamA_score == 0:
             self.status = "Perfectly Healthy!"
-            self.status_img = Image(source="five.png", size_hint_y = None, height = 200,pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/five.png", size_hint_y = None, height = 200,pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
 
         self.name_box = MDLabel(text=f"Name: {hs_name}", font_style="H6", pos_hint={'x': 0.2, 'y': 0.3})
         self.age_box = MDLabel(text=f"Age: {hs_age}", font_style="H6", pos_hint = {'x':0.2,'y':0.15})
@@ -3238,7 +3238,7 @@ class aiResult(Screen):
     def __init__(self, **kwa):
         super(aiResult, self).__init__(**kwa)
 
-        bgimg = Image(source="background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
+        bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
         self.add_widget(bgimg)
         
         heading = MDLabel(text="Here are your results!", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
@@ -3272,19 +3272,19 @@ class aiResult(Screen):
         self.status_img = ""
         if ai_score < 7:
             self.status = "Normal"
-            self.status_img = Image(source="four.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch=True)
+            self.status_img = Image(source="data/four.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch=True)
         elif ai_score > 6 and ai_score < 18:
             self.status = "Mild Depression"
-            self.status_img = Image(source="three.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch=True)
+            self.status_img = Image(source="data/three.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch=True)
         elif ai_score > 17 and ai_score < 25:
             self.status = "Moderate Depression"
-            self.status_img = Image(source="two.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/two.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
         elif ai_score > 24:
             self.status = "Severe Depression"
-            self.status_img = Image(source="one.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/one.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
         elif ai_score == 0:
             self.status = "Perfectly Healthy!"
-            self.status_img = Image(source="five.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/five.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
 
         self.name_box = MDLabel(text=f"Name: {hs_name}", font_style="H6", pos_hint={'x': 0.2, 'y': 0.3})
         self.age_box = MDLabel(text=f"Age: {hs_age}", font_style="H6", pos_hint = {'x':0.2,'y':0.15})
@@ -3319,7 +3319,7 @@ class MindMagic(MDApp):
     def build(self):
         self.theme_cls.material_style = "M3"
         self._app_name = "RakshaKavach!"
-        self.icon = "logo.png"
+        self.icon = "data/logo.png"
         sm = ScreenManager(transition=FadeTransition())
         sm.add_widget(WinVid(name="winvid"))
         sm.add_widget(HomeScreen(name="homeScreen"))
