@@ -113,64 +113,19 @@ print("\nProbability of a Heart Failure is %0.4f"% (prob_kn[1] * 100),"%\n\n====
 print("\nUsing Logistic Regression:")
 print("\nProbability of a Heart Failure is %0.4f"% (prob_lreg[1] * 100),"%\n\n")
 
-plt.rcParams['figure.figsize']=10,5
-sns.set_style('darkgrid')
-ax = sns.barplot(x=[ "Random Forest", "Support Vector", "Log Regression"], y=[ rf_acc, svc_clf_acc, log_reg_acc], palette = "husl", saturation =2.0)
-plt.ylabel('% of Accuracy', fontsize = 15)
-plt.title('Accuracy of Classifier Models', fontsize = 15)
-plt.xticks(fontsize = 12, horizontalalignment = 'center', rotation = 5)
-plt.yticks(fontsize = 12)
-for i in ax.patches:
-    width, height = i.get_width(), i.get_height()
-    x, y = i.get_xy()
-    ax.annotate(f'{round(height,2)}%', (x + width/2, y + height*1.02), ha='center', fontsize = 'large')
-plt.show()
-
-#def userInput():
-    #arr = np.array([
-       # [75,0,582.0,0,20.0,1,265000,1.9,130,1,0,4],
-       # [55.0,0,1820,0,38,0,270000.00,1.2,139,0,0,271],
-       # [60,1,47,0,20,0,204000,0.7,139,1,1,73],
-       # [45.0,0,2413,0,38,0,270000.00,1.4,140,1,1,280]
-    #])
-
-    #age, anaemia, creatinine_phosphokinase, diabetes, ejection_fraction,
-    #high_blood_pressure, platelets, serum_creatinine, serum_sodium, gender, smoking, time
-
-    #	65.0	1	160	1	20	0	327000.00	2.7	116	0	0	8
-
-    #arr[3][0] = float(input("Enter Age: "))
-    #arr[3][1] = float(input("Does patient have Anaemia: "))
-    #arr[3][2] = float(input("Enter Creatinine phosphokinase: "))
-    #arr[3][3] = float(input("Enter Diabetes: "))
-    #arr[3][4] = float(input("Enter Ejection fraction: "))
-    #arr[3][5] = float(input("Does patient have high blood pressure? "))
-    #arr[3][6] = float(input("Enter platelets: "))
-    #arr[3][7] = float(input("Enter Serum creatinine: "))
-    #arr[3][8] = float(input("Enter serum_sodium: "))
-    #arr[3][9] = float(input("Enter Gender: "))
-    #arr[3][10] = float(input("Enter Smoking status: "))
-    #arr[3][11] = float(input("Enter Time patient is admitted for: "))
-
-    #X_new= s_scaler.fit_transform(arr)
-    #X_new = pd.DataFrame(X_new, columns=col_names)
-
-    #y_pred = svc_clf.predict_proba(X_new)
-    #prob_svc = y_pred[3]
-    #y_pred = rf.predict_proba(X_new)
-    #prob_kn = y_pred[3]
-    #print(y_pred)
-    #y_pred = log_reg.predict_proba(X_new)
-    #prob_lreg = y_pred[3]
-
-
-    #print("\nUsing Support Vector Classifier:")
-    #print("\nProbability of a Heart Failure is %0.4f"% (prob_svc[1] * 100),"%\n\n===================================")
-
-    #print("\nUsing Random Forest Classifier:")
-    #print("\nProbability of a Heart Failure is %0.4f"% (prob_kn[1] * 100),"%\n\n===================================")
-
-    #print("\nUsing Logistic Regression:")
-    #print("\nProbability of a Heart Failure is %0.4f"% (prob_lreg[1] * 100),"%\n\n")
-
-#userInput()
+print("\nAverage Accurate Prediction:")
+sum_value = prob_svc[1] + prob_kn[1]
+average = sum_value/2
+print("\nProbability of a Heart Failure is %0.4f"% (average * 100),"%\n\n")
+#plt.rcParams['figure.figsize']=10,5
+#sns.set_style('darkgrid')
+#ax = sns.barplot(x=[ "Random Forest", "Support Vector", "Log Regression"], y=[ rf_acc, svc_clf_acc, log_reg_acc], palette = "husl", saturation =2.0)
+#plt.ylabel('% of Accuracy', fontsize = 15)
+#plt.title('Accuracy of Classifier Models', fontsize = 15)
+#plt.xticks(fontsize = 12, horizontalalignment = 'center', rotation = 5)
+#plt.yticks(fontsize = 12)
+#for i in ax.patches:
+ #   width, height = i.get_width(), i.get_height()
+ #   x, y = i.get_xy()
+ #   ax.annotate(f'{round(height,2)}%', (x + width/2, y + height*1.02), ha='center', fontsize = 'large')
+#plt.show()
