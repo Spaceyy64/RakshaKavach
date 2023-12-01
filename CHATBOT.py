@@ -10,7 +10,7 @@ import numpy as np
 import librosa
  
  
-api_key = "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"
+api_key = os.env(api_key)
  
 #engine = pyttsx3.init()
 #voices = engine.getProperty('voices')
