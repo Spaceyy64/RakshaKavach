@@ -121,15 +121,15 @@ print("\nProbability of a Heart Failure is %0.4f"% (average * 100),"%\n\n=======
 risk_value = average * 100
 if risk_value == 0:
   print("The patient is at no risk of heart attack.")
-else if risk_value > 0 and risk_value < 25:
+elif risk_value > 0 and risk_value < 25:
   print("The patient is at low risk of heart attack.")
-else if risk_value > 25 and risk_value < 50:
+elif risk_value > 25 and risk_value < 50:
   print("The patient is at moderate risk of heart attack.")
-else if risk_value > 50 and risk_value < 75:
+elif risk_value > 50 and risk_value < 75:
   print("The patient is at high risk of heart attack.")
-else if risk_value > 75 and risk_value < 100:
+elif risk_value > 75 and risk_value < 100:
   print("The patient is at very high risk of heart attack.")
-else if risk_value == 100:
+elif risk_value == 100:
   print("The patient is at extremely high risk of heart attack.")
 else:
   print("Probability value could not be read.")
