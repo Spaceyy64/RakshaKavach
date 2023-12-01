@@ -111,12 +111,30 @@ print("\nUsing Random Forest Classifier:")
 print("\nProbability of a Heart Failure is %0.4f"% (prob_kn[1] * 100),"%\n\n===================================")
 
 print("\nUsing Logistic Regression:")
-print("\nProbability of a Heart Failure is %0.4f"% (prob_lreg[1] * 100),"%\n\n")
+print("\nProbability of a Heart Failure is %0.4f"% (prob_lreg[1] * 100),"%\n\n===================================")
 
 print("\nAverage Accurate Prediction:")
 sum_value = prob_svc[1] + prob_kn[1]
 average = sum_value/2
-print("\nProbability of a Heart Failure is %0.4f"% (average * 100),"%\n\n")
+print("\nProbability of a Heart Failure is %0.4f"% (average * 100),"%\n\n===================================")
+
+risk_value = average * 100
+if risk_value == 0:
+  print("The patient is at no risk of heart attack.")
+else if risk_value > 0 and risk_value < 25:
+  print("The patient is at low risk of heart attack.")
+else if risk_value > 25 and risk_value < 50:
+  print("The patient is at moderate risk of heart attack.")
+else if risk_value > 50 and risk_value < 75:
+  print("The patient is at high risk of heart attack.")
+else if risk_value > 75 and risk_value < 100:
+  print("The patient is at very high risk of heart attack.")
+else if risk_value == 100:
+  print("The patient is at extremely high risk of heart attack.")
+else:
+  print("Probability value could not be read.")
+  
+
 #plt.rcParams['figure.figsize']=10,5
 #sns.set_style('darkgrid')
 #ax = sns.barplot(x=[ "Random Forest", "Support Vector", "Log Regression"], y=[ rf_acc, svc_clf_acc, log_reg_acc], palette = "husl", saturation =2.0)
