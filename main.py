@@ -760,7 +760,7 @@ class TalkAI(Screen):
         if hasattr(self, 'alw5'):
             self.remove_widget(self.alw5)
         box = MDBoxLayout(pos_hint={'x': 0.47, 'y': 0.225}, size_hint=(0.22, 0.05), md_bg_color="#FFFFFF")
-        self.nev5 = MDLabel(text='Not Manageable', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
+        self.nev5 = MDLabel(text='Mostly Manageable', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev5)
         self.add_widget(box)
         self.score5 = 0
@@ -784,7 +784,7 @@ class TalkAI(Screen):
         if hasattr(self, 'som5'):
             self.remove_widget(self.som5)
         box = MDBoxLayout(pos_hint={'x': 0.47, 'y': 0.225}, size_hint=(0.22, 0.05), md_bg_color="#FFFFFF")
-        self.alw5 = MDLabel(text='Mostly Manageable', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
+        self.alw5 = MDLabel(text='Not Manageable', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw5)
         self.add_widget(box)
         self.score5 = 2
@@ -1691,19 +1691,19 @@ class TalkAiPg4(Screen):
         menu2_items = [
             {
                 "text" :'No',
-                "on_release": self.never1,
+                "on_release": self.never2,
                 "viewclass": "IconListItem"
             },
 
             {
                 "text" :'Partial or Doubtful Loss',
-                "on_release": self.sometimes1,
+                "on_release": self.sometimes2,
                 "viewclass": "IconListItem"
             },
 
             {
                 "text": 'Loss of Insight',
-                "on_release":  self.always1,
+                "on_release":  self.always2,
                 "viewclass":"IconListItem"
             }
         ]
@@ -1877,8 +1877,8 @@ class TalkAiPg4(Screen):
             self.remove_widget(self.som2)
         if hasattr(self, 'alw2'):
             self.remove_widget(self.alw2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.nev1 = MDLabel(text='No', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.07), md_bg_color="#FFFFFF")
+        self.nev2 = MDLabel(text='No', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev2)
         self.add_widget(box)
         self.score2 = 0
@@ -1889,8 +1889,8 @@ class TalkAiPg4(Screen):
             self.remove_widget(self.nev2)
         if hasattr(self, 'alw2'):
             self.remove_widget(self.alw2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.som1 = MDLabel(text='Partial or\nDoubtful Loss', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.03), background="#000000")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.07), md_bg_color="#FFFFFF")
+        self.som2 = MDLabel(text='Partial or\nDoubtful Loss', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som2)
         self.add_widget(box)
         self.score2 = 1
@@ -1901,8 +1901,8 @@ class TalkAiPg4(Screen):
             self.remove_widget(self.nev2)
         if hasattr(self, 'som2'):
             self.remove_widget(self.som2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.alw2 = MDLabel(text='Severe', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.03), background="#000000")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.07), md_bg_color="#FFFFFF")
+        self.alw2 = MDLabel(text='Loss of Insight', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw2)
         self.add_widget(box)
         self.score2 = 2
