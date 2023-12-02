@@ -2,7 +2,6 @@ import kivy
 from kivy.uix.button import Button
 kivy.require('2.2.1')
 import pyttsx3
-import speech_recognition as sr
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -13,16 +12,11 @@ from kivymd.uix.button import MDRaisedButton
 from kivy.uix.floatlayout import FloatLayout
 from kivymd.uix.label import MDLabel
 from kivy.clock import Clock
+from kivy.graphics import Rectangle, Color, Line
 from kivy.properties import StringProperty
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.list import TwoLineListItem
 import requests
-from openai import OpenAI
-from pathlib import Path 
-from IPython.display import Audio
-import sounddevice as sd
-import numpy as np 
-import librosa
 
 # loading screen
 class IconListItem(TwoLineListItem):
@@ -290,9 +284,6 @@ class Decide(Screen):
 
         self.box = MDBoxLayout()
         self.add_widget(self.box)
-        
-        quesbtn = MDRaisedButton(text="Ask me a question!", pos_hint={'x':0.45,'y':0.4}, on_release=self.change)
-        self.add_widget(quesbtn)
 
     def dumb(self):
         dumb = MDLabel(text="BlissBuddy: Sorry, I couldn't quite get that. Could you please elaborate further?", font_style="H6", pos_hint = {'x':0.5, 'y':-0.1})
@@ -425,82 +416,10 @@ class Decide(Screen):
                 self.chtoai()
             else:
                 self.dumb()
-                
-    def change(self, instance):
-        self.manager.current = "askques"
-        
 
-class AskQues(Screen):
-    def __init__(self, **kwa):
-        super(AskQues, self).__init__(**kwa)
-        
-        # Background Video
-        video = Video(source='data/speechvid.mp4', state='play', options={'eos': 'loop'}, allow_stretch=True, keep_ratio=False, size_hint_y=1, volume=0)  # Set the size according to your needs
-        video.bind(eos=self.on_eos)
-        self.add_widget(video)
-        
-        scrinfo = MDLabel(text="Ask me a Question!", font_style="H4", pos_hint={'x': 0.03, 'y': 0.4},bold=True, underline=True)
-        self.add_widget(scrinfo)
+            
 
-        quesbtn = MDRaisedButton(text="Press to speak", pos_hint={'x':0.5, 'y':0.3}, on_release = self.press)
-        self.add_widget(quesbtn)
         
-    def press(self, instance):
-        hs = self.manager.get_screen("homeScreen")
-        hs_name = hs.name_input.text
-    
-        r = sr.Recognizer()
-        mic = sr.Microphone(device_index=0)
-		 
-        conversation = ""
-        user_name = hs_name
-        bot_name = "Bliss Buddy"
-		
-        with mic as source:
-        	self.remove_widget(understand_error)
-            listen = MDLabel(text="Listening...", pos_hint={'x':0.2,'y':0.2}, font_style="H4")
-            self.add_widget(listen)
-            r.adjust_for_ambient_noise(source, duration=0.2)
-            audio = r.listen(source)
-            self.remove_widget(listen)
-            wait = MDLabel(text="Processing...", pos_hint={'x':0.2, 'y':0.2}, font_style="H4")
-            self.add_widget(wait)
-	 
-        try:
-            user_input = r.recognize_google(audio)
-        except sr.UnknownValueError:
-            understand_error=MDLabel(text="Couldn't quite get that, try again", pos_hint={'x':0.2, 'y':0.3'})
-            self.add_widget(understand_input)
-        except sr.RequestError as e:
-            print(f"Could not request results from Google Speech Recognition service; {e}")
- 		
-        self.remove_widget(wait)
-        spoken = MDLabel(text=f"User said: {user_input}", pos_hint={'x':0.2,'y':0.2}, font_style="H4")
-        self.add_widget(spoken)
-    	
-        prompt = user_name + ":" + user_input + "\n" + bot_name + ":"
-        conversation += prompt
-    	
-        client = OpenAI(api_key="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")
-        response = client.completions.create(
-            model="gpt-3.5-turbo",
-            prompt=conversation,
-            temperature=0.6,  # Adjust this value to control the randomness of the response
-            max_tokens=256,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0
-        )
-		
-        response_str = response.choices[0].text
-        response_str = response_str.split(user_name + ":", 1)[0].split(bot_name + ":", 1)[0]
-     
-        conversation += response_str
-        answer = MDLabel(text=response_str, pos_hint={'x':0.2,'y':0.1}, font_style="H4")
-        self.add_widget(answer)
-    
-    def on_eos(self):
-    	pass
 
 
 # AI Screen
@@ -3396,7 +3315,7 @@ class aiResult(Screen):
         self.remove_widget(self.scorebox)
 
 
-class Rakshakavach(MDApp):
+class MindMagic(MDApp):
     def build(self):
         self.theme_cls.material_style = "M3"
         self._app_name = "RakshaKavach!"
@@ -3407,7 +3326,6 @@ class Rakshakavach(MDApp):
         sm.add_widget(TalkBot(name="talkbot"))
         sm.add_widget(Scren3(name="scren3"))
         sm.add_widget(Decide(name="decide"))
-        sm.add_widget(AskQues(name="askques"))
         sm.add_widget(TalkAI(name="talkai"))
         sm.add_widget(TalkAIPg2(name="talkai2"))
         sm.add_widget(TalkAIPg3(name="talkai3"))
@@ -3420,4 +3338,4 @@ class Rakshakavach(MDApp):
         return sm
 
 if __name__ == "__main__":
-    Rakshakavach().run()
+    MindMagic().run()
