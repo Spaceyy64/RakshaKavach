@@ -444,7 +444,7 @@ class TalkAI(Screen):
         q1 = MDLabel(text="1) How often do you feel like to cry?", font_style="H6", pos_hint={'x': 0.07, "y": 0.35})
         self.add_widget(q1)
         
-        self.b1 = MDRaisedButton( text="Select One", on_release=self.op1, pos_hint={'x': 0.7, "y": 0.8}, size_hint = (0.2,0.1))
+        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.5, "y": 0.82}, size_hint = (0.15,0.07))
         self.add_widget(self.b1)
 
         menu1_items = [
@@ -475,7 +475,7 @@ class TalkAI(Screen):
             width_mult=3,
         )
 
-        box1 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box1 = MDBoxLayout(pos_hint={'x': 0.7, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
         self.add_widget(box1)
         
         #SECOND QUESTION
