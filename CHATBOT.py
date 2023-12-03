@@ -1,7 +1,5 @@
 import subprocess
 import speech_recognition as sr
-#import pyttsx3
-#import openai
 from openai import OpenAI
 from pathlib import Path 
 from IPython.display import Audio
@@ -11,10 +9,6 @@ import librosa
  
  
 api_key = "YOUR_API_KEY"
- 
-#engine = pyttsx3.init()
-#voices = engine.getProperty('voices')
-#engine.setProperty('voice', voices[1].id)
  
 r = sr.Recognizer()
 mic = sr.Microphone(device_index=1)
