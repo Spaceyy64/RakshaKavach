@@ -16,7 +16,8 @@ from kivy.graphics import Rectangle, Color, Line
 from kivy.properties import StringProperty
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.list import TwoLineListItem
-import requests
+from kivy.core.window import Window
+from kivy.utils import platform
 
 # loading screen
 class IconListItem(TwoLineListItem):
@@ -32,8 +33,8 @@ class WinVid(Screen):
         bgimg.add_widget(Image(source='data/background.png', allow_stretch=True, keep_ratio=False, size_hint=(1, 1)))
 
         # Loading screen video
-        box = MDBoxLayout(size_hint=(1, 0.7), pos_hint={'y': 0.13})
-        vid = Video(source="data/vid.mp4", size_hint=(1, 1))
+        box = MDBoxLayout(size_hint=(1, 0.7), pos_hint={'y': 0.2})
+        vid = Video(source="data/vid.mp4", size_hint=(1, 0.9))
         vid.bind(eos=self.done)
         vid.state = 'play'
         box.add_widget(vid)
@@ -58,34 +59,30 @@ class HomeScreen(Screen):
 
         # Page title
         topic = MDLabel(text="Personal Information", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
-        topic_info = MDLabel(text="Please input the following information. This will be used to generate your report", font_style="H6", pos_hint={'x': 0.06, 'y': 0.37})
+        topic_info = MDLabel(text="Please input the following information. This will be used to generate your\nreport.", font_style="H6", pos_hint={'x': 0.03, 'y': 0.37})
 
         # Name input
-        name_prompt = MDLabel(text="Name:", pos_hint={'x': 0.1, 'y': 0.3}, _text_color_str="white")
-        self.name_input = TextInput(size_hint=(0.3, 0.05), pos_hint={'x': 0.1, 'y': 0.73}, multiline=False)
+        name_prompt = MDLabel(text="Name:", pos_hint={'x': 0.03, 'y': 0.3}, _text_color_str="white")
+        self.name_input = TextInput(size_hint=(0.95, 0.05), pos_hint={'x': 0.03, 'y': 0.73}, multiline=False)
 
         # Age input
-        age_prompt = MDLabel(text="Age:", pos_hint={'x': 0.1, 'y': 0.2})
-        self.age_input = TextInput(size_hint=(0.3, 0.05), pos_hint={'x': 0.1, 'y': 0.63}, multiline=False)
+        age_prompt = MDLabel(text="Age:", pos_hint={'x': 0.03, 'y': 0.2})
+        self.age_input = TextInput(size_hint=(0.95, 0.05), pos_hint={'x': 0.03, 'y': 0.63}, multiline=False)
 
         # Gender input
-        gender_prompt = MDLabel(text="Gender:", pos_hint={'x': 0.1, 'y': 0.1})
-        self.gender_input = TextInput(size_hint=(0.3, 0.05), pos_hint={'x': 0.1, 'y': 0.53}, multiline=False)
+        gender_prompt = MDLabel(text="Gender:", pos_hint={'x': 0.03, 'y': 0.1})
+        self.gender_input = TextInput(size_hint=(0.95, 0.05), pos_hint={'x': 0.03, 'y': 0.53}, multiline=False)
 
         # Blood type input
-        blood_prompt = MDLabel(text="Blood Type:", pos_hint={'x': 0.1, 'y': 0})
-        self.blood_input = TextInput(size_hint=(0.3, 0.05), pos_hint={'x': 0.1, 'y': 0.43}, multiline=False)
+        blood_prompt = MDLabel(text="Blood Type:", pos_hint={'x': 0.03, 'y': 0})
+        self.blood_input = TextInput(size_hint=(0.95, 0.05), pos_hint={'x': 0.03, 'y': 0.43}, multiline=False)
 
         # Address input line 1
-        addr_prompt_l1 = MDLabel(text="Address Line 1:", pos_hint={'x': 0.1, 'y': -0.1})
-        addr_l1_input = TextInput(size_hint=(0.85, 0.05), pos_hint={'x': 0.1, 'y': 0.33}, multiline=False)
-
-        # Address input line 2
-        addr_prompt_l2 = MDLabel(text="Address Line 2:", pos_hint={'x': 0.1, 'y': -0.2})
-        addr_l2_input = TextInput(size_hint=(0.85, 0.05), pos_hint={'x': 0.1, 'y': 0.23}, multiline=False)
+        addr_prompt_l1 = MDLabel(text="Address Line 1:", pos_hint={'x': 0.03, 'y': -0.1})
+        addr_l1_input = TextInput(size_hint=(0.95, 0.14), pos_hint={'x': 0.03, 'y': 0.23}, multiline=False)
 
         # Submit button to submit all the information entered
-        submitbtn = MDRaisedButton(text="Submit", on_release=self.submit, pos_hint={'x': 0.86, 'y': 0.06}, size_hint=(0.1, 0.1))
+        submitbtn = MDRaisedButton(text="Submit", on_release=self.submit, pos_hint={'x': 0.78, 'y': 0.1}, size_hint=(0.15, 0.07))
 
         # Adding all input widgets
         self.add_widget(topic)
@@ -98,30 +95,10 @@ class HomeScreen(Screen):
         self.add_widget(self.blood_input)
         self.add_widget(addr_prompt_l1)
         self.add_widget(addr_l1_input)
-        self.add_widget(addr_prompt_l2)
-        self.add_widget(addr_l2_input)
         self.add_widget(gender_prompt)
         self.add_widget(self.gender_input)
 
         self.add_widget(submitbtn)
-
-        # Name related Stuff
-        self.name_input_text = ""
-
-        self.display_name_label = MDLabel(halign="center", pos_hint={'center_x': 0.5, 'center_y': 0.8})
-        self.add_widget(self.display_name_label)
-
-        # Age Related Stuff
-        self.entered_age = ""
-
-        self.display_age_label = MDLabel(halign="center", pos_hint={'center_x': 0.5, 'center_y': 0.8})
-        self.add_widget(self.display_age_label)
-
-        #Gender Related Stuff
-        self.entered_gender = ""
-
-        self.display_gender_label = MDLabel(halign="center", pos_hint={'center_x': 0.5, 'center_y': 0.8})
-        self.add_widget(self.display_gender_label)
 
         # Updating the text on input
         def on_text(instance, value):
@@ -132,17 +109,9 @@ class HomeScreen(Screen):
         self.gender_input.bind(text=on_text)
         self.blood_input.bind(text=on_text)
         addr_l1_input.bind(text=on_text)
-        addr_l2_input.bind(text=on_text)
 
     # submit button function
     def submit(self, instance):
-        self.name_input_text = self.name_input.text
-        self.age_input_text = self.age_input.text  # Updated to store the entered age
-        self.gender_input_text = self.gender_input.text
-        talk_bot_screen = self.manager.get_screen('talkbot')
-        self.display_name_label.text = f"[size=50]Hello, {self.name_input_text}![/size]"
-        self.display_age_label.text = f"[size=24]Age: {self.entered_age}[/size]"  # Update the displayed age
-        self.display_gender_label = f"[size=24]Age: {self.entered_gender}[/size]"
         self.manager.current = "talkbot"
 
 # 2nd screen
@@ -154,40 +123,22 @@ class TalkBot(Screen):
         video.bind(eos=self.on_eos)
         self.add_widget(video)
         Clock.schedule_once(self.init)
+    
+    def on_enter(self):
+        hs = self.manager.get_screen('homeScreen')
+        self.nam = hs.name_input.text
+        display = MDLabel(text=f"Hello {self.nam}!", pos_hint={'x':0.25, 'y':0.05}, text_color=[0.647, 0.1647, 0.1647], font_style = "H4")
+        self.add_widget(display)
 
     def init(self, instance):
-        # Get the entered name from the homeScreen
-        hs = self.manager.get_screen('homeScreen')
-        entered_name = hs.name_input.text  # Access the TextInput widget and get its text
-        entered_age = hs.age_input.text
-        entered_gender = hs.gender_input.text
-
-        hs = self.manager.get_screen('homeScreen')  # need to reference here but the error
-        nam = hs.name_input.text
-
         # Buttons
         checkstat = MDRaisedButton(md_bg_color=(1, 1, 1, 1), text_color=(0, 0, 0, 1), text="Check Your Stats",
-                                   pos_hint={'x': 0.35, 'y': 0.02}, on_release=self.change)
+                                   pos_hint={'x': 0.1, 'y': 0.02}, on_release=self.change)
         self.add_widget(checkstat)
 
         talktoai = MDRaisedButton(text="Talk To AI", text_color=(0, 0, 0, 1), md_bg_color=(1, 1, 1, 1),
-                                   pos_hint={'x': 0.55, 'y': 0.02}, on_release=self.changeai)
+                                   pos_hint={'x': 0.65, 'y': 0.02}, on_release=self.changeai)
         self.add_widget(talktoai)
-
-        # Display entered name as a label
-        self.display_name_label = MDLabel(text=f"[size=50]Hello, {entered_name}![/size]", bold=True, halign="left",
-                                          pos_hint={'center_x': 0.55, 'center_y': 0.7}, markup=True)
-        self.add_widget(self.display_name_label)
-
-        # Display entered age as a label
-        self.display_age_label = MDLabel(text=f"[size=6][b]Age:[/b] {entered_age}[/size]", halign="left",
-                                         pos_hint={'center_x': 0.55, 'center_y': 0.64}, markup=True)
-        self.add_widget(self.display_age_label)
-
-        # Display entered gender as a Label
-        self.display_gender_label = MDLabel(text=f"[size=6][b]Gender:[/b] {entered_gender}[/size]", halign="left",
-                                         pos_hint={'center_x': 0.65, 'center_y': 0.64}, markup=True)
-        self.add_widget(self.display_gender_label)
 
         # Display motivational quote
         quote = self.get_motivational_quote()
@@ -210,21 +161,6 @@ class TalkBot(Screen):
         except Exception as e:
             print(f"Error fetching motivational quote: {e}")
             return "Stay motivated!"
-
-    def on_enter(self, *args):
-        # Get the entered name from the homeScreen
-        hs = self.manager.get_screen('homeScreen')
-        entered_name = hs.name_input.text
-        print(f"Entered Name: {entered_name}")
-        self.display_name_label.text = f"[size=50]Hello,{entered_name}![/size]"
-
-        # Age part
-        entered_age = hs.age_input.text
-        self.display_age_label.text = f"[size=24][b]Age:[/b] {entered_age}[/size]"
-
-        # Gender part
-        entered_gender = hs.gender_input.text
-        self.display_gender_label.text = f"[size=24], [b]Gender:[/b] {entered_gender}[/size]"
 
     def change(self, instance):
         self.scren3_screen = self.manager.get_screen('scren3')
@@ -266,27 +202,27 @@ class Decide(Screen):
         bg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint_y=1)
         self.add_widget(bg)
 
-        scrinfo = MDLabel(text="Take a test by answering this question or ask questions to BlissBuddy!", font_style="H4", pos_hint={'x': 0.03, 'y': 0.4}, bold=True, underline=True)
+        scrinfo = MDLabel(text="Take a test by answering this question or ask questions to BlissBuddy!", font_style="H6", pos_hint={'x': 0.03, 'y': 0.45}, bold=True, underline=True)
         self.add_widget(scrinfo)
 
-        ques = MDLabel(text="Q: How do you feel about your Life?", font_style="H6", pos_hint={'x':0.06, 'y':0.25})
+        ques = MDLabel(text="Q: How do you feel about your Life?", font_style="H6", pos_hint={'x':0.03, 'y':0.35})
         self.add_widget(ques)
 
-        self.ans = TextInput(pos_hint={'x':0.09,'y':0.53}, size_hint={0.85,0.2})
+        self.ans = TextInput(pos_hint={'x':0.06,'y':0.63}, size_hint={0.9,0.2})
         self.add_widget(self.ans)
 
         def on_text(instance, value):
             print('The widget', instance, 'have:', value)
         self.ans.bind(text=on_text)
 
-        subtn = MDRaisedButton(text="Submit Answer", pos_hint={'x':0.78,'y':0.47}, on_release=self.submit)
+        subtn = MDRaisedButton(text="Submit Answer", pos_hint={'x':0.35,'y':0.57}, on_release=self.submit)
         self.add_widget(subtn)
 
         self.box = MDBoxLayout()
         self.add_widget(self.box)
 
     def dumb(self):
-        dumb = MDLabel(text="BlissBuddy: Sorry, I couldn't quite get that. Could you please elaborate further?", font_style="H6", pos_hint = {'x':0.5, 'y':-0.1})
+        dumb = MDLabel(text="BlissBuddy: Sorry, I couldn't quite get that. Could you please elaborate further?", font_style="H6", pos_hint = {'x':0.5, 'y':0})
         self.box.add_widget(dumb)
         engine = pyttsx3.init()
         engine.say("Sorry, I couldn't quite get that. Could you please elaborate further?")
@@ -346,7 +282,7 @@ class Decide(Screen):
                 'chafed'
                 ]
             sad_words=[
-                'melancholy',
+                'melancholy', 'depress', 'sad', 'sadness', 'die', 'death', 'dead', 'end', 'end my life'
                 'depression',
                 'depressed',
                 'sorrow',
@@ -438,13 +374,13 @@ class TalkAI(Screen):
         bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
         self.add_widget(bgimg)
         
-        heading = MDLabel(text="Answer some questions:", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
+        heading = MDLabel(text="Answer some questions:", font_style="H5", pos_hint={'x': 0.03, 'y': 0.45}, underline=True)
         self.add_widget(heading)
 
         q1 = MDLabel(text="1) How often do you feel like to cry?", font_style="H6", pos_hint={'x': 0.07, "y": 0.35})
         self.add_widget(q1)
         
-        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.5, "y": 0.82}, size_hint = (0.15,0.07))
+        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.75}, size_hint = (0.15,0.07))
         self.add_widget(self.b1)
 
         menu1_items = [
@@ -474,15 +410,12 @@ class TalkAI(Screen):
             position="bottom",
             width_mult=3,
         )
-
-        box1 = MDBoxLayout(pos_hint={'x': 0.7, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box1)
         
         #SECOND QUESTION
         q2 = MDLabel(text="2) Do you experience Apathy?", font_style="H6", pos_hint={'x': 0.07, "y": 0.2})
         self.add_widget(q2)
         
-        self.b2 = MDRaisedButton( text="Select One", on_release=self.op2, pos_hint={'x': 0.7, "y": 0.65}, size_hint = (0.2,0.1))
+        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.6}, size_hint = (0.15,0.07))
         self.add_widget(self.b2)
 
         menu2_items = [
@@ -513,14 +446,11 @@ class TalkAI(Screen):
             width_mult=3,
         )
 
-        box2 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box2)
-
         #3RD QUESTION
         q3 = MDLabel(text="3) Has your behaviour changed any\n much lately?", font_style="H6", pos_hint={'x': 0.07, "y": 0.05})
         self.add_widget(q3)
         
-        self.b3 = MDRaisedButton( text="Select One", on_release=self.op3, pos_hint={'x': 0.7, "y": 0.5}, size_hint = (0.2,0.1))
+        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.44}, size_hint = (0.15,0.07))
         self.add_widget(self.b3)
 
         menu3_items = [
@@ -545,14 +475,11 @@ class TalkAI(Screen):
             width_mult=3,
         )
 
-        box3 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box3)
-
         #4TH QUESTION
         q4 = MDLabel(text="4) Do you feel any guilty without any\n specific reason?", font_style="H6", pos_hint={'x': 0.07, "y": -0.1})
         self.add_widget(q4)
         
-        self.b4 = MDRaisedButton( text="Select One", on_release=self.op4, pos_hint={'x': 0.7, "y": 0.35}, size_hint = (0.2,0.1))
+        self.b4 = MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.29}, size_hint = (0.15,0.07))
         self.add_widget(self.b4)
 
         menu4_items = [
@@ -577,14 +504,11 @@ class TalkAI(Screen):
             width_mult=3,
         )
 
-        box4 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.375}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box4)
-
         #5TH QUESTION
         q5 = MDLabel(text="5) Are these feelings too intense or\n still manageable?", font_style="H6", pos_hint={'x': 0.07, "y": -0.25})
         self.add_widget(q5)
         
-        self.b5 = MDRaisedButton( text="Select One", on_release=self.op5, pos_hint={'x': 0.7, "y": 0.2}, size_hint = (0.2,0.1))
+        self.b5 = MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.07))
         self.add_widget(self.b5)
 
         menu5_items = [
@@ -614,11 +538,8 @@ class TalkAI(Screen):
             width_mult=4,
         )
 
-        box5 = MDBoxLayout(pos_hint={'x': 0.47, 'y': 0.225}, size_hint=(0.22, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box5)
-
         #NEXT SCREEN BUTTON THAT ALSO ACTS AS A SUBMIT BUTTON
-        nxtbtn = MDRaisedButton(text="Next ->", pos_hint={'x': 0.9,'y':  0.03}, size_hint = (0.1, 0.08), on_release = self.nxt)
+        nxtbtn = MDRaisedButton( text="Next ->", on_release=self.nxt, pos_hint={'x': 0.7, "y": 0.03}, size_hint = (0.15,0.07))
         self.add_widget(nxtbtn)
 
     #FUNCTIONS OF 1ST MENU
@@ -631,7 +552,7 @@ class TalkAI(Screen):
             self.remove_widget(self.som1)
         if hasattr(self, 'alw1'):
             self.remove_widget(self.alw1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.76}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev1 = MDLabel(text='Never', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev1)
         self.add_widget(box)
@@ -643,7 +564,7 @@ class TalkAI(Screen):
             self.remove_widget(self.nev1)
         if hasattr(self, 'alw1'):
             self.remove_widget(self.alw1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.76}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som1 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som1)
         self.add_widget(box)
@@ -655,7 +576,7 @@ class TalkAI(Screen):
             self.remove_widget(self.nev1)
         if hasattr(self, 'som1'):
             self.remove_widget(self.som1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.76}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw1 = MDLabel(text='Always', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw1)
         self.add_widget(box)
@@ -671,7 +592,7 @@ class TalkAI(Screen):
             self.remove_widget(self.som2)
         if hasattr(self, 'alw2'):
             self.remove_widget(self.alw2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.61}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev2 = MDLabel(text='Never', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev2)
         self.add_widget(box)
@@ -683,7 +604,7 @@ class TalkAI(Screen):
             self.remove_widget(self.nev2)
         if hasattr(self, 'alw2'):
             self.remove_widget(self.alw2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.61}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som2 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som2)
         self.add_widget(box)
@@ -695,7 +616,7 @@ class TalkAI(Screen):
             self.remove_widget(self.nev2)
         if hasattr(self, 'som2'):
             self.remove_widget(self.som2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.61}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw2 = MDLabel(text='Always', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw2)
         self.add_widget(box)
@@ -709,7 +630,7 @@ class TalkAI(Screen):
         self.menu3.dismiss()
         if hasattr(self, 'nope1'):
             self.remove_widget(self.nope1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.46}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.yep1 = MDLabel(text='Yes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.yep1)
         self.add_widget(box)
@@ -719,7 +640,7 @@ class TalkAI(Screen):
         self.menu3.dismiss()
         if hasattr(self, 'yep1'):
             self.remove_widget(self.yep1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.46}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nope1 = MDLabel(text='No', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nope1)
         self.add_widget(box)
@@ -733,7 +654,7 @@ class TalkAI(Screen):
         self.menu4.dismiss()
         if hasattr(self, 'nope2'):
             self.remove_widget(self.nope2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.375}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.31}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.yep2 = MDLabel(text='Yes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.yep2)
         self.add_widget(box)
@@ -743,7 +664,7 @@ class TalkAI(Screen):
         self.menu4.dismiss()
         if hasattr(self, 'yep2'):
             self.remove_widget(self.yep2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.375}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.31}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nope2 = MDLabel(text='No', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nope2)
         self.add_widget(box)
@@ -759,7 +680,7 @@ class TalkAI(Screen):
             self.remove_widget(self.som5)
         if hasattr(self, 'alw5'):
             self.remove_widget(self.alw5)
-        box = MDBoxLayout(pos_hint={'x': 0.47, 'y': 0.225}, size_hint=(0.22, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.47, 'y': 0.16}, size_hint=(0.32, 0.05), md_bg_color="#FFFFFF")
         self.nev5 = MDLabel(text='Mostly Manageable', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev5)
         self.add_widget(box)
@@ -771,7 +692,7 @@ class TalkAI(Screen):
             self.remove_widget(self.nev5)
         if hasattr(self, 'alw5'):
             self.remove_widget(self.alw5)
-        box = MDBoxLayout(pos_hint={'x': 0.47, 'y': 0.225}, size_hint=(0.22, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.47, 'y': 0.16}, size_hint=(0.32, 0.05), md_bg_color="#FFFFFF")
         self.som5 = MDLabel(text='Sometimes Manageable', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som5)
         self.add_widget(box)
@@ -783,7 +704,7 @@ class TalkAI(Screen):
             self.remove_widget(self.nev5)
         if hasattr(self, 'som5'):
             self.remove_widget(self.som5)
-        box = MDBoxLayout(pos_hint={'x': 0.47, 'y': 0.225}, size_hint=(0.22, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.47, 'y': 0.16}, size_hint=(0.32, 0.05), md_bg_color="#FFFFFF")
         self.alw5 = MDLabel(text='Not Manageable', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw5)
         self.add_widget(box)
@@ -3315,8 +3236,10 @@ class aiResult(Screen):
         self.remove_widget(self.scorebox)
 
 
-class MindMagic(MDApp):
+class RakshaKavach(MDApp):
     def build(self):
+        if platform != 'android':
+            Window.size = (362, 730)
         self.theme_cls.material_style = "M3"
         self._app_name = "RakshaKavach!"
         self.icon = "data/logo.png"
@@ -3338,4 +3261,4 @@ class MindMagic(MDApp):
         return sm
 
 if __name__ == "__main__":
-    MindMagic().run()
+    RakshaKavach().run()
