@@ -126,7 +126,7 @@ class TalkBot(Screen):
     def on_enter(self):
         hs = self.manager.get_screen('homeScreen')
         self.nam = hs.name_input.text
-        display = MDLabel(text=f"Hello {self.nam}!", pos_hint={'x':0.25, 'y':0.05}, text_color=[0.647, 0.1647, 0.1647], font_style = "H4")
+        display = MDLabel(text=f"Hello {self.nam}!", pos_hint={'x':0.03, 'y':0.05}, text_color=[0.647, 0.1647, 0.1647], font_style = "H4")
         self.add_widget(display)
 
     def init(self, instance):
@@ -712,7 +712,6 @@ class TalkAI(Screen):
         print(self.aiscore1)
 		    
     def on_enter(self):
-            self.First_Time = False
         if self.scorefix:
             self.scorefix = False
             self.score = 0
