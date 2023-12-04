@@ -1,7 +1,6 @@
 import kivy
 from kivy.uix.button import Button
 kivy.require('2.2.1')
-import pyttsx3
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -222,10 +221,6 @@ class Decide(Screen):
         self.add_widget(self.box)
 
     def dumb(self):
-        dumb = MDLabel(text="BlissBuddy: Sorry, I couldn't quite get that. Could you please elaborate further?", font_style="H6", pos_hint = {'x':0.5, 'y':0})
-        self.box.add_widget(dumb)
-        engine = pyttsx3.init()
-        engine.say("Sorry, I couldn't quite get that. Could you please elaborate further?")
         engine.runAndWait()
 
     def chtoai(self):
@@ -717,10 +712,6 @@ class TalkAI(Screen):
         print(self.aiscore1)
 		    
     def on_enter(self):
-        if self.First_Time:
-            engine = pyttsx3.init()
-            engine.say("Looks like you may have a case of depression! Please answer these questions so that I can determine your severity.")
-            engine.runAndWait()
             self.First_Time = False
         if self.scorefix:
             self.scorefix = False
@@ -752,7 +743,7 @@ class TalkAIPg2(Screen):
         q1 = MDLabel(text="6) Do you believe that you live an\n achievable life?", font_style="H6", pos_hint={'x': 0.07, "y": 0.35})
         self.add_widget(q1)
         
-        self.b1 = MDRaisedButton( text="Select One", on_release=self.op1, pos_hint={'x': 0.7, "y": 0.8}, size_hint = (0.2,0.1))
+        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.75}, size_hint = (0.15,0.07))
         self.add_widget(self.b1)
 
         menu1_items = [
@@ -782,15 +773,12 @@ class TalkAIPg2(Screen):
             position="bottom",
             width_mult=3,
         )
-
-        box1 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box1)
         
         #SECOND QUESTION
         q2 = MDLabel(text="7) Do you find yourself being any\n disturbed or feeling restless in the\n middle of the night?", font_style="H6", pos_hint={'x': 0.07, "y": 0.2})
         self.add_widget(q2)
         
-        self.b2 = MDRaisedButton( text="Select One", on_release=self.op2, pos_hint={'x': 0.7, "y": 0.65}, size_hint = (0.2,0.1))
+        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.58}, size_hint = (0.15,0.07))
         self.add_widget(self.b2)
 
         menu2_items = [
@@ -821,14 +809,11 @@ class TalkAIPg2(Screen):
             width_mult=3,
         )
 
-        box2 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box2)
-
         #3RD QUESTION
         q3 = MDLabel(text="8) Are you having any Suicidal\n Thoughts lately?", font_style="H6", pos_hint={'x': 0.07, "y": 0.05})
         self.add_widget(q3)
         
-        self.b3 = MDRaisedButton( text="Select One", on_release=self.op3, pos_hint={'x': 0.7, "y": 0.5}, size_hint = (0.2,0.1))
+        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.44}, size_hint = (0.15,0.07))
         self.add_widget(self.b3)
 
         menu3_items = [
@@ -852,15 +837,11 @@ class TalkAIPg2(Screen):
             position="bottom",
             width_mult=3,
         )
-
-        box3 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box3)
-
         #4TH QUESTION
         q4 = MDLabel(text="9) How often do you experience\n insomnia?", font_style="H6", pos_hint={'x': 0.07, "y": -0.1})
         self.add_widget(q4)
         
-        self.b4 = MDRaisedButton( text="Select One", on_release=self.op4, pos_hint={'x': 0.7, "y": 0.35}, size_hint = (0.2,0.1))
+        self.b4 = MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.29}, size_hint = (0.15,0.07))
         self.add_widget(self.b4)
 
         menu4_items = [
@@ -890,14 +871,11 @@ class TalkAIPg2(Screen):
             width_mult=4,
         )
 
-        box4 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.375}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box4)
-
         #5TH QUESTION
         q5 = MDLabel(text="10) Do you wake up a little too early\n in the morning and can't sleep again?", font_style="H6", pos_hint={'x': 0.07, "y": -0.25})
         self.add_widget(q5)
         
-        self.b5 = MDRaisedButton( text="Select One", on_release=self.op5, pos_hint={'x': 0.7, "y": 0.2}, size_hint = (0.2,0.1))
+        self.b5 = MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.07))
         self.add_widget(self.b5)
 
         menu5_items = [
@@ -926,14 +904,11 @@ class TalkAIPg2(Screen):
             width_mult=3,
         )
 
-        box5 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.225}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box5)
-
         #NEXT SCREEN BUTTON THAT ALSO ACTS AS A SUBMIT BUTTON
-        nxtbtn = MDRaisedButton(text="Next ->", pos_hint={'x': 0.9,'y':  0.03}, size_hint = (0.1, 0.08), on_release = self.nxt)
+        nxtbtn = MDRaisedButton( text="Next ->", on_release=self.nxt, pos_hint={'x': 0.7, "y": 0.03}, size_hint = (0.15,0.07))
         self.add_widget(nxtbtn)
         
-        prevbtn = MDRaisedButton(text="<- Prev", pos_hint={'x':0,'y':0.03}, size_hint = (0.1, 0.08), on_release = self.prev)
+        prevbtn = MDRaisedButton(text="<- Prev", pos_hint={'x':0.1,'y':0.03}, size_hint = (0.15,0.07), on_release = self.prev)
         self.add_widget(prevbtn)
 
     #FUNCTIONS OF 1ST MENU
@@ -946,7 +921,7 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.som1)
         if hasattr(self, 'alw1'):
             self.remove_widget(self.alw1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.76}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev1 = MDLabel(text='Yes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev1)
         self.add_widget(box)
@@ -958,7 +933,7 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.nev1)
         if hasattr(self, 'alw1'):
             self.remove_widget(self.alw1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.76}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som1 = MDLabel(text='Maybe', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som1)
         self.add_widget(box)
@@ -970,7 +945,7 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.nev1)
         if hasattr(self, 'som1'):
             self.remove_widget(self.som1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.76}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw1 = MDLabel(text='No', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw1)
         self.add_widget(box)
@@ -986,7 +961,7 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.som2)
         if hasattr(self, 'alw2'):
             self.remove_widget(self.alw2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.61}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev2 = MDLabel(text='No', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev2)
         self.add_widget(box)
@@ -998,7 +973,7 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.nev2)
         if hasattr(self, 'alw2'):
             self.remove_widget(self.alw2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.61}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som2 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som2)
         self.add_widget(box)
@@ -1010,7 +985,7 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.nev2)
         if hasattr(self, 'som2'):
             self.remove_widget(self.som2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.61}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw2 = MDLabel(text='Yes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw2)
         self.add_widget(box)
@@ -1024,7 +999,7 @@ class TalkAIPg2(Screen):
         self.menu3.dismiss()
         if hasattr(self, 'nope1'):
             self.remove_widget(self.nope1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.46}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.yep1 = MDLabel(text='Yes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.yep1)
         self.add_widget(box)
@@ -1034,7 +1009,7 @@ class TalkAIPg2(Screen):
         self.menu3.dismiss()
         if hasattr(self, 'yep1'):
             self.remove_widget(self.yep1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.46}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nope1 = MDLabel(text='No', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nope1)
         self.add_widget(box)
@@ -1050,7 +1025,7 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.som4)
         if hasattr(self, 'alw4'):
             self.remove_widget(self.alw4)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.375}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.31}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev4 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev4)
         self.add_widget(box)
@@ -1062,7 +1037,7 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.nev4)
         if hasattr(self, 'alw4'):
             self.remove_widget(self.alw4)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.375}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.31}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som4 = MDLabel(text='Often', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som4)
         self.add_widget(box)
@@ -1074,7 +1049,7 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.nev4)
         if hasattr(self, 'som4'):
             self.remove_widget(self.som4)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.375}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.31}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw4 = MDLabel(text='Always', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw4)
         self.add_widget(box)
@@ -1090,7 +1065,7 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.som5)
         if hasattr(self, 'alw5'):
             self.remove_widget(self.alw5)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.225}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.16}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev5 = MDLabel(text='No', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev5)
         self.add_widget(box)
@@ -1102,8 +1077,8 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.nev5)
         if hasattr(self, 'alw5'):
             self.remove_widget(self.alw5)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.225}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.som5 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.16}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
+        self.som5 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5}, size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som5)
         self.add_widget(box)
         self.score5 = 1
@@ -1114,7 +1089,7 @@ class TalkAIPg2(Screen):
             self.remove_widget(self.nev5)
         if hasattr(self, 'som5'):
             self.remove_widget(self.som5)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.225}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.16}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw5 = MDLabel(text='Yes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw5)
         self.add_widget(box)
@@ -2353,11 +2328,6 @@ class HamApg1(Screen):
         self.scorefix = True
     
     def on_enter(self):
-        if self.First_Time:
-            engine = pyttsx3.init()
-            engine.say("Looks like you may have a case of Anxiety! Please answer these questions so that I can determine your severity.")
-            engine.runAndWait()
-            self.First_Time = False
         if self.scorefix:
             self.scorefix = False
             self.score = 0
