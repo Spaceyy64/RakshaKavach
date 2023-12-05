@@ -375,7 +375,7 @@ class TalkAI(Screen):
         q1 = MDLabel(text="1) How often do you feel like to cry?", font_style="H6", pos_hint={'x': 0.07, "y": 0.35})
         self.add_widget(q1)
         
-        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.75}, size_hint = (0.15,0.07))
+        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.75}, size_hint = (0.15,0.04))
         self.add_widget(self.b1)
 
         menu1_items = [
@@ -410,7 +410,7 @@ class TalkAI(Screen):
         q2 = MDLabel(text="2) Do you experience Apathy?", font_style="H6", pos_hint={'x': 0.07, "y": 0.2})
         self.add_widget(q2)
         
-        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.6}, size_hint = (0.15,0.07))
+        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.6}, size_hint = (0.15,0.04))
         self.add_widget(self.b2)
 
         menu2_items = [
@@ -445,7 +445,7 @@ class TalkAI(Screen):
         q3 = MDLabel(text="3) Has your behaviour changed any\n much lately?", font_style="H6", pos_hint={'x': 0.07, "y": 0.05})
         self.add_widget(q3)
         
-        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.44}, size_hint = (0.15,0.07))
+        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.44}, size_hint = (0.15,0.04))
         self.add_widget(self.b3)
 
         menu3_items = [
@@ -474,7 +474,7 @@ class TalkAI(Screen):
         q4 = MDLabel(text="4) Do you feel any guilty without any\n specific reason?", font_style="H6", pos_hint={'x': 0.07, "y": -0.1})
         self.add_widget(q4)
         
-        self.b4 = MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.29}, size_hint = (0.15,0.07))
+        self.b4 = MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.29}, size_hint = (0.15,0.04))
         self.add_widget(self.b4)
 
         menu4_items = [
@@ -503,7 +503,7 @@ class TalkAI(Screen):
         q5 = MDLabel(text="5) Are these feelings too intense or\n still manageable?", font_style="H6", pos_hint={'x': 0.07, "y": -0.25})
         self.add_widget(q5)
         
-        self.b5 = MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.07))
+        self.b5 = MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.04))
         self.add_widget(self.b5)
 
         menu5_items = [
@@ -742,7 +742,7 @@ class TalkAIPg2(Screen):
         q1 = MDLabel(text="6) Do you believe that you live an\n achievable life?", font_style="H6", pos_hint={'x': 0.07, "y": 0.35})
         self.add_widget(q1)
         
-        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.75}, size_hint = (0.15,0.07))
+        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.75}, size_hint = (0.15,0.04))
         self.add_widget(self.b1)
 
         menu1_items = [
@@ -777,7 +777,7 @@ class TalkAIPg2(Screen):
         q2 = MDLabel(text="7) Do you find yourself being any\n disturbed or feeling restless in the\n middle of the night?", font_style="H6", pos_hint={'x': 0.07, "y": 0.2})
         self.add_widget(q2)
         
-        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.58}, size_hint = (0.15,0.07))
+        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.58}, size_hint = (0.15,0.04))
         self.add_widget(self.b2)
 
         menu2_items = [
@@ -812,7 +812,7 @@ class TalkAIPg2(Screen):
         q3 = MDLabel(text="8) Are you having any Suicidal\n Thoughts lately?", font_style="H6", pos_hint={'x': 0.07, "y": 0.05})
         self.add_widget(q3)
         
-        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.44}, size_hint = (0.15,0.07))
+        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.44}, size_hint = (0.15,0.04))
         self.add_widget(self.b3)
 
         menu3_items = [
@@ -840,7 +840,7 @@ class TalkAIPg2(Screen):
         q4 = MDLabel(text="9) How often do you experience\n insomnia?", font_style="H6", pos_hint={'x': 0.07, "y": -0.1})
         self.add_widget(q4)
         
-        self.b4 = MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.29}, size_hint = (0.15,0.07))
+        self.b4 = MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.29}, size_hint = (0.15,0.04))
         self.add_widget(self.b4)
 
         menu4_items = [
@@ -874,7 +874,7 @@ class TalkAIPg2(Screen):
         q5 = MDLabel(text="10) Do you wake up a little too early\n in the morning and can't sleep again?", font_style="H6", pos_hint={'x': 0.07, "y": -0.25})
         self.add_widget(q5)
         
-        self.b5 = MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.07))
+        self.b5 = MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.04))
         self.add_widget(self.b5)
 
         menu5_items = [
@@ -1135,7 +1135,7 @@ class TalkAIPg3(Screen):
         q1 = MDLabel(text="11) Do you Like working in your\n current workplace?", font_style="H6", pos_hint={'x': 0.07, "y": 0.35})
         self.add_widget(q1)
         
-        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.75}, size_hint = (0.15,0.07))
+        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.75}, size_hint = (0.15,0.04))
         self.add_widget(self.b1)
 
         menu1_items = [
@@ -1169,7 +1169,7 @@ class TalkAIPg3(Screen):
         q2 = MDLabel(text="12) Will you consider yourself Social?", font_style="H6", pos_hint={'x': 0.07, "y": 0.2})
         self.add_widget(q2)
         
-        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.6}, size_hint = (0.15,0.07))
+        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.6}, size_hint = (0.15,0.04))
         self.add_widget(self.b2)
 
         menu2_items = [
@@ -1198,7 +1198,7 @@ class TalkAIPg3(Screen):
         q3 = MDLabel(text="13) Do you still practice hobbies\n during your leisure?", font_style="H6", pos_hint={'x': 0.07, "y": 0.05})
         self.add_widget(q3)
         
-        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.44}, size_hint = (0.15,0.07))
+        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.44}, size_hint = (0.15,0.04))
         self.add_widget(self.b3)
 
         menu3_items = [
@@ -1232,7 +1232,7 @@ class TalkAIPg3(Screen):
         q4 = MDLabel(text="14) How will you rate your working\n productivity?", font_style="H6", pos_hint={'x': 0.07, "y": -0.1})
         self.add_widget(q4)
         
-        self.b4 =MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.3}, size_hint = (0.15,0.07))
+        self.b4 =MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.3}, size_hint = (0.15,0.04))
         self.add_widget(self.b4)
 
         menu4_items = [
@@ -1266,7 +1266,7 @@ class TalkAIPg3(Screen):
         q5 = MDLabel(text="15) How would you rate your speaking\n skills?", font_style="H6", pos_hint={'x': 0.07, "y": -0.25})
         self.add_widget(q5)
         
-        self.b5 =MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.15}, size_hint = (0.15,0.07))
+        self.b5 =MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.15}, size_hint = (0.15,0.04))
         self.add_widget(self.b5)
 
         menu5_items = [
@@ -1526,7 +1526,7 @@ class TalkAiPg4(Screen):
         q1 = MDLabel(text="16) Do you feel agitated easily?", font_style="H6", pos_hint={'x': 0.07, "y": 0.35})
         self.add_widget(q1)
         
-        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.75}, size_hint = (0.15,0.07))
+        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.75}, size_hint = (0.15,0.04))
         self.add_widget(self.b1)
 
         menu1_items = [
@@ -1561,7 +1561,7 @@ class TalkAiPg4(Screen):
         q2 = MDLabel(text="17) Do you feel that you understand\nslower than an average person?", font_style="H6", pos_hint={'x': 0.07, "y": 0.2})
         self.add_widget(q2)
         
-        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.6}, size_hint = (0.15,0.07))
+        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.6}, size_hint = (0.15,0.04))
         self.add_widget(self.b2)
 
         menu2_items = [
@@ -1596,7 +1596,7 @@ class TalkAiPg4(Screen):
         q3 = MDLabel(text="18) Do you keep thinking about small\n imperfections in any general ", font_style="H6", pos_hint={'x': 0.07, "y": 0.05})
         self.add_widget(q3)
         
-        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.45}, size_hint = (0.15,0.07))
+        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.45}, size_hint = (0.15,0.04))
         self.add_widget(self.b3)
 
         menu3_items = [
@@ -1630,7 +1630,7 @@ class TalkAiPg4(Screen):
         q4 = MDLabel(text="19)  Do you feel easily frightened when it comes to you being ill?", font_style="H6", pos_hint={'x': 0.07, "y": -0.1})
         self.add_widget(q4)
         
-        self.b4 = MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.3}, size_hint = (0.15,0.07))
+        self.b4 = MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.3}, size_hint = (0.15,0.04))
         self.add_widget(self.b4)
 
         menu4_items = [
@@ -1659,7 +1659,7 @@ class TalkAiPg4(Screen):
         q5 = MDLabel(text="20) Do you think you are losing energy and not able to cope up with daily life?", font_style="H6", pos_hint={'x': 0.07, "y": -0.25})
         self.add_widget(q5)
         
-        self.b5 = MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.07))
+        self.b5 = MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.04))
         self.add_widget(self.b5)
 
         menu5_items = [
@@ -1992,7 +1992,7 @@ class HamApg1(Screen):
         q3 = MDLabel(text="3) Do you fear being left alone or\n being with strangers, animals,\ntraffic or in a crowd, or in dark?", font_style="H6", pos_hint={'x': 0.07, "y": 0.05})
         self.add_widget(q3)
         
-        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.43}, size_hint = (0.15,0.07))
+        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.43}, size_hint = (0.15,0.04))
         self.add_widget(self.b3)
 
         menu3_items = [
@@ -2027,7 +2027,7 @@ class HamApg1(Screen):
         q4 = MDLabel(text="4) Do you have difficulty sleeping,\nbroken sleep or nightmares?", font_style="H6", pos_hint={'x': 0.07, "y": -0.1})
         self.add_widget(q4)
         
-        self.b4 = MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.29}, size_hint = (0.15,0.07))
+        self.b4 = MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.29}, size_hint = (0.15,0.04))
         self.add_widget(self.b4)
 
         menu4_items = [
@@ -2062,7 +2062,7 @@ class HamApg1(Screen):
         q5 = MDLabel(text="5) Do you feel distracted or face\nmemory loss?", font_style="H6", pos_hint={'x': 0.07, "y": -0.25})
         self.add_widget(q5)
         
-        self.b5 = MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.07))
+        self.b5 = MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.04))
         self.add_widget(self.b5)
 
         menu5_items = [
@@ -2775,7 +2775,7 @@ class HamAPg3(Screen):
         q1 = MDLabel(text="11) Do you have abdominal pain,\nburning sensations, nausea, vomiting\n or difficulty in swallowing?", font_style="H6", pos_hint={'x': 0.07, "y": 0.35})
         self.add_widget(q1)
         
-        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.68}, size_hint = (0.15,0.07))
+        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.68}, size_hint = (0.15,0.04))
         self.add_widget(self.b1)
 
         menu1_items = [
@@ -2810,7 +2810,7 @@ class HamAPg3(Screen):
         q2 = MDLabel(text="12) Are you experiencing:\na) Loss of Libido (Males), premature\nejaculation\nb) Menstrual disturbances (Females)?", font_style="H6", pos_hint={'x': 0.07, "y": 0.05})
         self.add_widget(q2)
         
-        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.38}, size_hint = (0.15,0.07))
+        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.38}, size_hint = (0.15,0.04))
         self.add_widget(self.b2)
 
         menu2_items = [
@@ -2845,7 +2845,7 @@ class HamAPg3(Screen):
         q3 = MDLabel(text="13) Do you have sensations of dry\n mouth or tendency to sweat?", font_style="H6", pos_hint={'x': 0.07, "y": -0.25})
         self.add_widget(q3)
         
-        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.07))
+        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.04))
         self.add_widget(self.b3)
 
         menu3_items = [
