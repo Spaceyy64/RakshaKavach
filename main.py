@@ -2333,7 +2333,7 @@ class HamAPg2(Screen):
         q1 = MDLabel(text="6) Do you face lack of pleasure in\nhobbies?", font_style="H6", pos_hint={'x': 0.07, "y": 0.35})
         self.add_widget(q1)
         
-        self.b1 = MDRaisedButton( text="Select One", on_release=self.op1, pos_hint={'x': 0.7, "y": 0.8}, size_hint = (0.2,0.1))
+        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.75}, size_hint = (0.15,0.04))
         self.add_widget(self.b1)
 
         menu1_items = [
@@ -2363,15 +2363,12 @@ class HamAPg2(Screen):
             position="bottom",
             width_mult=3,
         )
-
-        box1 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box1)
         
         #SECOND QUESTION
         q2 = MDLabel(text="7) Do you face stomach aches or do\nyou have a habit of often grinding your\nteeth.", font_style="H6", pos_hint={'x': 0.07, "y": 0.2})
         self.add_widget(q2)
         
-        self.b2 = MDRaisedButton( text="Select One", on_release=self.op2, pos_hint={'x': 0.7, "y": 0.65}, size_hint = (0.2,0.1))
+        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.6}, size_hint = (0.15,0.04))
         self.add_widget(self.b2)
 
         menu2_items = [
@@ -2402,14 +2399,11 @@ class HamAPg2(Screen):
             width_mult=3,
         )
 
-        box2 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box2)
-
         #3RD QUESTION
         q3 = MDLabel(text="8) Do you feel suddenly weak or\nexperience blurring of vision?", font_style="H6", pos_hint={'x': 0.07, "y": 0.05})
         self.add_widget(q3)
         
-        self.b3 = MDRaisedButton( text="Select One", on_release=self.op3, pos_hint={'x': 0.7, "y": 0.5}, size_hint = (0.2,0.1))
+        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.45}, size_hint = (0.15,0.04))
         self.add_widget(self.b3)
 
         menu3_items = [
@@ -2440,14 +2434,11 @@ class HamAPg2(Screen):
             width_mult=3,
         )
 
-        box3 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box3)
-
         #4TH QUESTION
         q4 = MDLabel(text="9) Do you have pain in chest or\nfainting feelings?", font_style="H6", pos_hint={'x': 0.07, "y": -0.1})
         self.add_widget(q4)
         
-        self.b4 = MDRaisedButton( text="Select One", on_release=self.op4, pos_hint={'x': 0.7, "y": 0.35}, size_hint = (0.2,0.1))
+        self.b4 = MDRaisedButton( text="Select", on_release=self.op4, pos_hint={'x': 0.2, "y": 0.3}, size_hint = (0.15,0.04))
         self.add_widget(self.b4)
 
         menu4_items = [
@@ -2478,14 +2469,11 @@ class HamAPg2(Screen):
             width_mult=3,
         )
 
-        box4 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.375}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box4)
-
         #5TH QUESTION
         q5 = MDLabel(text="10) Do you have choking sensations?", font_style="H6", pos_hint={'x': 0.07, "y": -0.25})
         self.add_widget(q5)
         
-        self.b5 = MDRaisedButton( text="Select One", on_release=self.op5, pos_hint={'x': 0.7, "y": 0.2}, size_hint = (0.2,0.1))
+        self.b5 = MDRaisedButton( text="Select", on_release=self.op5, pos_hint={'x': 0.2, "y": 0.15}, size_hint = (0.15,0.04))
         self.add_widget(self.b5)
 
         menu5_items = [
@@ -2515,14 +2503,11 @@ class HamAPg2(Screen):
             width_mult=4,
         )
 
-        box5 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.225}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box5)
-
         #NEXT SCREEN BUTTON THAT ALSO ACTS AS A SUBMIT BUTTON
-        nxtbtn = MDRaisedButton(text="Next ->", pos_hint={'x': 0.9,'y':  0.03}, size_hint = (0.1, 0.08), on_release = self.nxt)
+        nxtbtn = MDRaisedButton( text="Next ->", on_release=self.nxt, pos_hint={'x': 0.7, "y": 0.03}, size_hint = (0.15,0.07))
         self.add_widget(nxtbtn)
         
-        prevbtn = MDRaisedButton(text="<- Prev", pos_hint={'x':0,'y': 0.03}, size_hint = (0.1, 0.08), on_release = self.prev)
+        prevbtn = MDRaisedButton(text="<- Prev", pos_hint={'x':0.1,'y':0.03}, size_hint = (0.15,0.07), on_release = self.prev)
         self.add_widget(prevbtn)
 
     #FUNCTIONS OF 1ST MENU
@@ -2535,7 +2520,7 @@ class HamAPg2(Screen):
             self.remove_widget(self.som1)
         if hasattr(self, 'alw1'):
             self.remove_widget(self.alw1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.75}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev1 = MDLabel(text='Never', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev1)
         self.add_widget(box)
@@ -2547,7 +2532,7 @@ class HamAPg2(Screen):
             self.remove_widget(self.nev1)
         if hasattr(self, 'alw1'):
             self.remove_widget(self.alw1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.75}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som1 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som1)
         self.add_widget(box)
@@ -2559,7 +2544,7 @@ class HamAPg2(Screen):
             self.remove_widget(self.nev1)
         if hasattr(self, 'som1'):
             self.remove_widget(self.som1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.75}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw1 = MDLabel(text='Always', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw1)
         self.add_widget(box)
@@ -2575,7 +2560,7 @@ class HamAPg2(Screen):
             self.remove_widget(self.som2)
         if hasattr(self, 'alw2'):
             self.remove_widget(self.alw2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.6}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev2 = MDLabel(text='Never', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev2)
         self.add_widget(box)
@@ -2587,7 +2572,7 @@ class HamAPg2(Screen):
             self.remove_widget(self.nev2)
         if hasattr(self, 'alw2'):
             self.remove_widget(self.alw2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.6}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som2 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som2)
         self.add_widget(box)
@@ -2599,7 +2584,7 @@ class HamAPg2(Screen):
             self.remove_widget(self.nev2)
         if hasattr(self, 'som2'):
             self.remove_widget(self.som2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.675}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.6}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw2 = MDLabel(text='Always', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw2)
         self.add_widget(box)
@@ -2615,7 +2600,7 @@ class HamAPg2(Screen):
             self.remove_widget(self.som3)
         if hasattr(self, 'alw3'):
             self.remove_widget(self.alw3)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.44}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev3 = MDLabel(text='Never', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev3)
         self.add_widget(box)
@@ -2627,7 +2612,7 @@ class HamAPg2(Screen):
             self.remove_widget(self.nev3)
         if hasattr(self, 'alw3'):
             self.remove_widget(self.alw3)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.44}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som3 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som3)
         self.add_widget(box)
@@ -2639,8 +2624,9 @@ class HamAPg2(Screen):
             self.remove_widget(self.nev3)
         if hasattr(self, 'som3'):
             self.remove_widget(self.som3)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.44}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw3 = MDLabel(text='Always', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
+
         box.add_widget(self.alw3)
         self.add_widget(box)
         self.score3 = 2
@@ -2655,7 +2641,7 @@ class HamAPg2(Screen):
             self.remove_widget(self.som4)
         if hasattr(self, 'alw4'):
             self.remove_widget(self.alw4)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.375}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.3}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev4 = MDLabel(text='Never', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev4)
         self.add_widget(box)
@@ -2667,7 +2653,7 @@ class HamAPg2(Screen):
             self.remove_widget(self.nev4)
         if hasattr(self, 'alw4'):
             self.remove_widget(self.alw4)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.375}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.3}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som4 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som4)
         self.add_widget(box)
@@ -2679,7 +2665,7 @@ class HamAPg2(Screen):
             self.remove_widget(self.nev4)
         if hasattr(self, 'som4'):
             self.remove_widget(self.som4)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.375}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.3}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw4 = MDLabel(text='Always', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw4)
         self.add_widget(box)
@@ -2695,11 +2681,35 @@ class HamAPg2(Screen):
             self.remove_widget(self.som5)
         if hasattr(self, 'alw5'):
             self.remove_widget(self.alw5)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.225}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.15}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev5 = MDLabel(text='Never', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev5)
         self.add_widget(box)
         self.score5 = 0
+
+    def sometimes5(self):
+        self.menu5.dismiss()
+        if hasattr(self, 'nev5'):
+            self.remove_widget(self.nev5)
+        if hasattr(self, 'alw5'):
+            self.remove_widget(self.alw5)
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.15}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
+        self.som5 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
+        box.add_widget(self.som5)
+        self.add_widget(box)
+        self.score5 = 1
+
+    def always5(self):
+        self.menu5.dismiss()
+        if hasattr(self, 'nev5'):
+            self.remove_widget(self.nev5)
+        if hasattr(self, 'som5'):
+            self.remove_widget(self.som5)
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.15}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
+        self.alw5 = MDLabel(text='Always', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
+        box.add_widget(self.alw5)
+        self.add_widget(box)
+        self.score5 = 2
 
     def sometimes5(self):
         self.menu5.dismiss()
@@ -2765,7 +2775,7 @@ class HamAPg3(Screen):
         q1 = MDLabel(text="11) Do you have abdominal pain,\nburning sensations, nausea, vomiting\n or difficulty in swallowing?", font_style="H6", pos_hint={'x': 0.07, "y": 0.35})
         self.add_widget(q1)
         
-        self.b1 = MDRaisedButton( text="Select One", on_release=self.op1, pos_hint={'x': 0.7, "y": 0.8}, size_hint = (0.2,0.1))
+        self.b1 = MDRaisedButton( text="Select", on_release=self.op1, pos_hint={'x': 0.2, "y": 0.68}, size_hint = (0.15,0.07))
         self.add_widget(self.b1)
 
         menu1_items = [
@@ -2795,15 +2805,12 @@ class HamAPg3(Screen):
             position="bottom",
             width_mult=3,
         )
-
-        box1 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box1)
         
         #SECOND QUESTION
         q2 = MDLabel(text="12) Are you experiencing:\na) Loss of Libido (Males), premature\nejaculation\nb) Menstrual disturbances (Females)?", font_style="H6", pos_hint={'x': 0.07, "y": 0.05})
         self.add_widget(q2)
         
-        self.b2 = MDRaisedButton( text="Select One", on_release=self.op2, pos_hint={'x': 0.7, "y": 0.5}, size_hint = (0.2,0.1))
+        self.b2 = MDRaisedButton( text="Select", on_release=self.op2, pos_hint={'x': 0.2, "y": 0.38}, size_hint = (0.15,0.07))
         self.add_widget(self.b2)
 
         menu2_items = [
@@ -2834,14 +2841,11 @@ class HamAPg3(Screen):
             width_mult=3,
         )
 
-        box2 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box2)
-
         #3RD QUESTION
         q3 = MDLabel(text="13) Do you have sensations of dry\n mouth or tendency to sweat?", font_style="H6", pos_hint={'x': 0.07, "y": -0.25})
         self.add_widget(q3)
         
-        self.b3 = MDRaisedButton( text="Select One", on_release=self.op3, pos_hint={'x': 0.7, "y": 0.2}, size_hint = (0.2,0.1))
+        self.b3 = MDRaisedButton( text="Select", on_release=self.op3, pos_hint={'x': 0.2, "y": 0.14}, size_hint = (0.15,0.07))
         self.add_widget(self.b3)
 
         menu3_items = [
@@ -2872,14 +2876,11 @@ class HamAPg3(Screen):
             width_mult=3,
         )
 
-        box3 = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.225}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
-        self.add_widget(box3)
-
         #NEXT SCREEN BUTTON THAT ALSO ACTS AS A SUBMIT BUTTON
-        nxtbtn = MDRaisedButton(text="Next ->", pos_hint={'x': 0.9,'y':  0.03}, size_hint = (0.1, 0.08), on_release = self.nxt)
+        nxtbtn = MDRaisedButton( text="Next ->", on_release=self.nxt, pos_hint={'x': 0.7, "y": 0.03}, size_hint = (0.15,0.07))
         self.add_widget(nxtbtn)
         
-        prevbtn = MDRaisedButton(text="<- Prev", pos_hint={'x':0, 'y':0.03}, size_hint = (0.1, 0.08), on_release = self.prev)
+        prevbtn = MDRaisedButton(text="<- Prev", pos_hint={'x':0.1,'y':0.03}, size_hint = (0.15,0.07), on_release = self.prev)
         self.add_widget(prevbtn)
 
     #FUNCTIONS OF 1ST MENU
@@ -2892,7 +2893,7 @@ class HamAPg3(Screen):
             self.remove_widget(self.som1)
         if hasattr(self, 'alw1'):
             self.remove_widget(self.alw1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.68}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev1 = MDLabel(text='Never', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev1)
         self.add_widget(box)
@@ -2904,7 +2905,7 @@ class HamAPg3(Screen):
             self.remove_widget(self.nev1)
         if hasattr(self, 'alw1'):
             self.remove_widget(self.alw1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.68}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som1 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som1)
         self.add_widget(box)
@@ -2916,7 +2917,7 @@ class HamAPg3(Screen):
             self.remove_widget(self.nev1)
         if hasattr(self, 'som1'):
             self.remove_widget(self.som1)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.825}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.68}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw1 = MDLabel(text='Always', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw1)
         self.add_widget(box)
@@ -2932,7 +2933,7 @@ class HamAPg3(Screen):
             self.remove_widget(self.som2)
         if hasattr(self, 'alw2'):
             self.remove_widget(self.alw2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.38}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev2 = MDLabel(text='Never', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev2)
         self.add_widget(box)
@@ -2944,7 +2945,7 @@ class HamAPg3(Screen):
             self.remove_widget(self.nev2)
         if hasattr(self, 'alw2'):
             self.remove_widget(self.alw2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.38}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som2 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som2)
         self.add_widget(box)
@@ -2956,7 +2957,7 @@ class HamAPg3(Screen):
             self.remove_widget(self.nev2)
         if hasattr(self, 'som2'):
             self.remove_widget(self.som2)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.525}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.38}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw2 = MDLabel(text='Always', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.alw2)
         self.add_widget(box)
@@ -2972,7 +2973,7 @@ class HamAPg3(Screen):
             self.remove_widget(self.som3)
         if hasattr(self, 'alw3'):
             self.remove_widget(self.alw3)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.225}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.15}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.nev3 = MDLabel(text='Never', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.nev3)
         self.add_widget(box)
@@ -2984,7 +2985,7 @@ class HamAPg3(Screen):
             self.remove_widget(self.nev3)
         if hasattr(self, 'alw3'):
             self.remove_widget(self.alw3)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.225}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.15}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.som3 = MDLabel(text='Sometimes', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
         box.add_widget(self.som3)
         self.add_widget(box)
@@ -2996,8 +2997,9 @@ class HamAPg3(Screen):
             self.remove_widget(self.nev3)
         if hasattr(self, 'som3'):
             self.remove_widget(self.som3)
-        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.225}, size_hint=(0.15, 0.05), md_bg_color="#FFFFFF")
+        box = MDBoxLayout(pos_hint={'x': 0.5, 'y': 0.15}, size_hint=(0.25, 0.05), md_bg_color="#FFFFFF")
         self.alw3 = MDLabel(text='Always', pos_hint={'x': 0.5, 'y': 0.5},size_hint=(0.8, 0.01), background="#000000")
+
         box.add_widget(self.alw3)
         self.add_widget(box)
         self.score3 = 2
@@ -3018,7 +3020,7 @@ class HamAPg3(Screen):
             self.score4 = 0
             self.score5 = 0
     
-    def prev(self):
+    def prev(self, instance):
         self.manager.current="talkai"
         
         
@@ -3057,25 +3059,25 @@ class HamResult(Screen):
         self.status_img = ""
         if hamA_score < 7:
             self.status = "Normal"
-            self.status_img = Image(source="data/four.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch=True)
+            self.status_img = Image(source="data/four.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch=True)
         elif hamA_score > 6 and hamA_score < 18:
             self.status = "Mild Anxiety"
-            self.status_img = Image(source="data/three.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch=True)
+            self.status_img = Image(source="data/three.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch=True)
         elif hamA_score > 17 and hamA_score < 25:
             self.status = "Moderate Anxiety"
-            self.status_img = Image(source="data/two.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/two.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch = True)
         elif hamA_score > 24:
             self.status = "Severe Anxiety"
-            self.status_img = Image(source="data/one.png", size_hint_x=None, height = 200, pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/one.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch = True)
         elif hamA_score == 0:
             self.status = "Perfectly Healthy!"
-            self.status_img = Image(source="data/five.png", size_hint_y = None, height = 200,pos_hint={'x':0.65, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/five.png", size_hint_y = None, height = 200,pos_hint={'x':0.55, 'y':0.1}, allow_stretch = True)
 
-        self.name_box = MDLabel(text=f"Name: {hs_name}", font_style="H6", pos_hint={'x': 0.2, 'y': 0.3})
-        self.age_box = MDLabel(text=f"Age: {hs_age}", font_style="H6", pos_hint = {'x':0.2,'y':0.15})
-        self.gender_box = MDLabel(text=f"Gender: {hs_gender}", font_style="H6", pos_hint={'x':0.2,'y':0})
-        self.blood_box = MDLabel(text=f"Blood Group: {hs_bloodgrp}", font_style="H6", pos_hint={'x':0.2,'y':-0.15})
-        self.scorebox = MDLabel(text=f"Mental Health Status:\n{self.status}", font_style = "H6", pos_hint={'x':0.6,'y':0.3})
+        self.name_box = MDLabel(text=f"Name:\n{hs_name}", font_style="H6", pos_hint={'x': 0.03, 'y': 0.3})
+        self.age_box = MDLabel(text=f"Age: {hs_age}", font_style="H6", pos_hint = {'x':0.03,'y':0.15})
+        self.gender_box = MDLabel(text=f"Gender: {hs_gender}", font_style="H6", pos_hint={'x':0.03,'y':0})
+        self.blood_box = MDLabel(text=f"Blood Group: {hs_bloodgrp}", font_style="H6", pos_hint={'x':0.03,'y':-0.15})
+        self.scorebox = MDLabel(text=f"Mental Health\nStatus:\n{self.status}", font_style = "H6", pos_hint={'x':0.5,'y':0.3})
         
         self.add_widget(self.name_box)
         self.add_widget(self.age_box)
@@ -3084,7 +3086,7 @@ class HamResult(Screen):
         self.add_widget(self.scorebox)    
         self.add_widget(self.status_img)    
         	
-        home = MDRaisedButton(text="Home", pos_hint={'x':0.5,'y':0.03}, on_release=self.home)
+        home = MDRaisedButton(text="Home", pos_hint={'x':0.4,'y':0.03}, on_release=self.home)
         self.add_widget(home)
         
     def home(self, instance):
