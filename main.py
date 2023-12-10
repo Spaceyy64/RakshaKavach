@@ -17,6 +17,8 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.list import TwoLineListItem
 from kivy.core.window import Window
 from kivy.utils import platform
+from kivy.metrics import dp
+from jnius import autoclass
 
 # loading screen
 class IconListItem(TwoLineListItem):
@@ -69,16 +71,16 @@ class HomeScreen(Screen):
         self.age_input = TextInput(size_hint=(0.95, 0.05), pos_hint={'x': 0.03, 'y': 0.63}, multiline=False)
 
         # Gender input
-        gender_prompt = MDLabel(text="Gender:", pos_hint={'x': 0.03, 'y': 0.1})
-        self.gender_input = TextInput(size_hint=(0.95, 0.05), pos_hint={'x': 0.03, 'y': 0.53}, multiline=False)
+        gender_prompt = MDLabel(text="Gender:", pos_hint={'x': 0.03, 'y': -0.15})
+        self.gender_input = MDRaisedButton( text="Select", pos_hint={'x': 0.03, "y": 0.28}, size_hint = (0.15,0.04), on_release=self.op1)
 
         # Blood type input
-        blood_prompt = MDLabel(text="Blood Type:", pos_hint={'x': 0.03, 'y': 0})
-        self.blood_input = TextInput(size_hint=(0.95, 0.05), pos_hint={'x': 0.03, 'y': 0.43}, multiline=False)
-
-        # Address input line 1
-        addr_prompt_l1 = MDLabel(text="Address Line 1:", pos_hint={'x': 0.03, 'y': -0.1})
-        addr_l1_input = TextInput(size_hint=(0.95, 0.14), pos_hint={'x': 0.03, 'y': 0.23}, multiline=False)
+        blood_prompt = MDLabel(text="Blood Type:", pos_hint={'x': 0.03, 'y': -0.25})
+        self.blood_input = MDRaisedButton( text="Select", pos_hint={'x': 0.03, "y": 0.18}, size_hint = (0.15,0.04), on_release=self.op2)
+        
+        #Address input
+        addr_prompt = MDLabel(text="Address:", pos_hint={'x': 0.03, 'y': 0.1})
+        addr_input = TextInput(size_hint=(0.95, 0.2), pos_hint={'x': 0.03, 'y': 0.38}, multiline=True)
 
         # Submit button to submit all the information entered
         submitbtn = MDRaisedButton(text="Submit", on_release=self.submit, pos_hint={'x': 0.78, 'y': 0.1}, size_hint=(0.15, 0.07))
@@ -92,22 +94,304 @@ class HomeScreen(Screen):
         self.add_widget(age_prompt)
         self.add_widget(blood_prompt)
         self.add_widget(self.blood_input)
-        self.add_widget(addr_prompt_l1)
-        self.add_widget(addr_l1_input)
         self.add_widget(gender_prompt)
         self.add_widget(self.gender_input)
+        self.add_widget(addr_input)
+        self.add_widget(addr_prompt)
 
         self.add_widget(submitbtn)
+        
+        #menus
+        menu1_items = [
+            {
+                "text" :'Male',
+                "on_release": self.Male,
+                "viewclass": "IconListItem"
+            },
+
+            {
+                "text": 'Female',
+                "on_release":  self.Female,
+                "viewclass":"IconListItem"
+            }
+        ]
+
+
+        self.menu1 = MDDropdownMenu(
+            caller = self.gender_input,
+            items=menu1_items,
+            position="bottom",
+            width_mult=2,
+        )
+        
+        menu2_items = [
+            {
+                "text" :'A+',
+                "on_release": self.apos,
+                "viewclass": "IconListItem"
+            },
+
+            {
+                "text": 'A-',
+                "on_release":  self.aneg,
+                "viewclass":"IconListItem"
+            },
+            {
+                "text" :'B+',
+                "on_release": self.bpos,
+                "viewclass": "IconListItem"
+            },
+
+            {
+                "text": 'B-',
+                "on_release":  self.bneg,
+                "viewclass":"IconListItem"
+            },
+            {
+                "text" :'AB+',
+                "on_release": self.cpos,
+                "viewclass": "IconListItem"
+            },
+
+            {
+                "text": 'AB-',
+                "on_release":  self.cneg,
+                "viewclass":"IconListItem"
+            },
+            {
+                "text" :'O+',
+                "on_release": self.dpos,
+                "viewclass": "IconListItem"
+            },
+
+            {
+                "text": 'O-',
+                "on_release":  self.dneg,
+                "viewclass":"IconListItem"
+            }
+        ]
+
+
+        self.menu2 = MDDropdownMenu(
+            caller = self.blood_input,
+            items=menu2_items,
+            width_mult=2,
+        )
 
         # Updating the text on input
         def on_text(instance, value):
             print('The widget', instance, 'have:', value)
 
         self.name_input.bind(text=on_text)
-        self.age_input.bind(text=on_text) 
-        self.gender_input.bind(text=on_text)
-        self.blood_input.bind(text=on_text)
-        addr_l1_input.bind(text=on_text)
+        self.age_input.bind(text=on_text)
+        
+    def op1(self, instance):
+            self.menu1.open()
+        
+    def Male(self):
+            self.remove_widget(self.gender_input)
+            if hasattr(self, 'woman'):
+                self.remove_widget(self.woman)
+            self.menu1.dismiss()
+            self.man = MDRaisedButton(text="Male", pos_hint={'x': 0.03, "y": 0.28}, size_hint = (0.15,0.04), on_release=self.op1)
+            self.add_widget(self.man)
+            self.gender_input_text = "Male"
+            
+    def Female(self):
+            self.remove_widget(self.gender_input)
+            if hasattr(self, 'man'):
+                self.remove_widget(self.man)
+            self.menu1.dismiss()
+            self.woman = MDRaisedButton(text="Female", pos_hint={'x': 0.03, "y": 0.28}, size_hint = (0.15,0.04), on_release=self.op1)
+            self.add_widget(self.woman)
+            self.gender_input_text = "Female"
+            
+    def op2(self,instance):
+    	self.menu2.open()
+            
+    def apos(self):
+            self.remove_widget(self.blood_input)
+            if hasattr(self, 'ane'):
+                self.remove_widget(self.ane)
+            if hasattr(self, 'bpo'):
+            	self.remove_widget(self.bpo)
+            if hasattr(self, 'bne'):
+                self.remove_widget(self.bne)
+            if hasattr(self, 'cne'):
+                self.remove_widget(self.cne)
+            if hasattr(self, 'cpo'):
+            	self.remove_widget(self.cpo)
+            if hasattr(self, 'dne'):
+                self.remove_widget(self.dne)
+            self.apo = MDRaisedButton(text="A+", pos_hint={'x': 0.03, "y": 0.18}, size_hint = (0.15,0.04), on_release=self.op2)
+            self.add_widget(self.apo)
+            self.blood_input_text = "A+"
+            
+    def aneg(self):
+            self.remove_widget(self.blood_input)
+            if hasattr(self, 'bpo'):
+                self.remove_widget(self.bpo)
+            if hasattr(self, 'apo'):
+            	self.remove_widget(self.apo)
+            if hasattr(self, 'bne'):
+                self.remove_widget(self.bne)
+            if hasattr(self, 'cne'):
+                self.remove_widget(self.cne)
+            if hasattr(self, 'cpo'):
+            	self.remove_widget(self.cpo)
+            if hasattr(self, 'dne'):
+                self.remove_widget(self.dne)
+            if hasattr(self, 'dpo'):
+            	self.remove_widget(self.dpo)
+            self.menu2.dismiss()
+            self.ane = MDRaisedButton(text="A-", pos_hint={'x': 0.03, "y": 0.18}, size_hint = (0.15,0.04), on_release=self.op2)
+            self.add_widget(self.ane)
+            self.blood_input_text = "A-"
+            
+    def bpos(self):
+            self.remove_widget(self.blood_input)
+            if hasattr(self, 'ane'):
+                self.remove_widget(self.ane)
+            if hasattr(self, 'apo'):
+            	self.remove_widget(self.apo)
+            if hasattr(self, 'bne'):
+                self.remove_widget(self.bne)
+            if hasattr(self, 'cne'):
+                self.remove_widget(self.cne)
+            if hasattr(self, 'cpo'):
+            	self.remove_widget(self.cpo)
+            if hasattr(self, 'dne'):
+                self.remove_widget(self.dne)
+            if hasattr(self, 'dpo'):
+            	self.remove_widget(self.dpo)
+            self.menu2.dismiss()
+            self.bpo = MDRaisedButton(text="B+", pos_hint={'x': 0.03, "y": 0.18}, size_hint = (0.15,0.04), on_release=self.op2)
+            self.add_widget(self.bpo)
+            self.blood_text_input = "B+"
+            
+    def bneg(self):
+            self.remove_widget(self.blood_input)
+            if hasattr(self, 'ane'):
+                self.remove_widget(self.ane)
+            if hasattr(self, 'apo'):
+            	self.remove_widget(self.apo)
+            if hasattr(self, 'bpo'):
+                self.remove_widget(self.bpo)
+            if hasattr(self, 'cne'):
+                self.remove_widget(self.cne)
+            if hasattr(self, 'cpo'):
+            	self.remove_widget(self.cpo)
+            if hasattr(self, 'dne'):
+                self.remove_widget(self.dne)
+            if hasattr(self, 'dpo'):
+            	self.remove_widget(self.dpo)
+            self.menu2.dismiss()
+            self.bne = MDRaisedButton(text="B-", pos_hint={'x': 0.03, "y": 0.18}, size_hint = (0.15,0.04), on_release=self.op2)
+            self.add_widget(self.bne)
+            self.blood_text_input = "B-"
+            
+    def cpos(self):
+            self.remove_widget(self.blood_input)
+            if hasattr(self, 'ane'):
+                self.remove_widget(self.ane)
+            if hasattr(self, 'apo'):
+            	self.remove_widget(self.apo)
+            if hasattr(self, 'bne'):
+                self.remove_widget(self.bne)
+            if hasattr(self, 'cne'):
+                self.remove_widget(self.cne)
+            if hasattr(self, 'bpo'):
+                self.remove_widget(self.bpo)
+            if hasattr(self, 'dpo'):
+            	self.remove_widget(self.dpo)
+            self.menu2.dismiss()
+            self.cpo = MDRaisedButton(text="AB+", pos_hint={'x': 0.03, "y": 0.18}, size_hint = (0.15,0.04), on_release=self.op2)
+            self.add_widget(self.cpo)
+            self.blood_text_input = "AB+"
+            
+    def cneg(self):
+            self.remove_widget(self.blood_input)
+            if hasattr(self, 'ane'):
+                self.remove_widget(self.ane)
+            if hasattr(self, 'apo'):
+            	self.remove_widget(self.apo)
+            if hasattr(self, 'bpo'):
+                self.remove_widget(self.bpo)
+            if hasattr(self, 'bne'):
+                self.remove_widget(self.bne)
+            if hasattr(self, 'cpo'):
+            	self.remove_widget(self.cpo)
+            if hasattr(self, 'dpo'):
+            	self.remove_widget(self.dpo)
+            self.menu2.dismiss()
+            self.cne = MDRaisedButton(text="AB-", pos_hint={'x': 0.03, "y": 0.18}, size_hint = (0.15,0.04), on_release=self.op2)
+            self.add_widget(self.cne)
+            self.blood_text_input = "AB-"
+            
+    
+    def dpos(self):
+            self.remove_widget(self.blood_input)
+            if hasattr(self, 'ane'):
+                self.remove_widget(self.ane)
+            if hasattr(self, 'bpo'):
+            	self.remove_widget(self.bpo)
+            if hasattr(self, 'bne'):
+                self.remove_widget(self.bne)
+            if hasattr(self, 'cne'):
+                self.remove_widget(self.cne)
+            if hasattr(self, 'cpo'):
+            	self.remove_widget(self.cpo)
+            if hasattr(self, 'apo'):
+            	self.remove_widget(self.apo)
+            if hasattr(self, 'dne'):
+                self.remove_widget(self.dne)
+            self.dpo = MDRaisedButton(text="O+", pos_hint={'x': 0.03, "y": 0.18}, size_hint = (0.15,0.04), on_release=self.op2)
+            self.add_widget(self.dpo)
+            self.blood_text_input = "O+"
+            
+    def dneg(self):
+            self.remove_widget(self.blood_input)
+            if hasattr(self, 'bpo'):
+                self.remove_widget(self.bpo)
+            if hasattr(self, 'apo'):
+            	self.remove_widget(self.apo)
+            if hasattr(self, 'bne'):
+                self.remove_widget(self.bne)
+            if hasattr(self, 'cne'):
+                self.remove_widget(self.cne)
+            if hasattr(self, 'cpo'):
+            	self.remove_widget(self.cpo)
+            if hasattr(self, 'dne'):
+                self.remove_widget(self.dne)
+            if hasattr(self, 'apo'):
+            	self.remove_widget(self.apo)
+            if hasattr(self, 'dpo'):
+            	self.remove_widget(self.dpo)
+            self.menu2.dismiss()
+            self.dne = MDRaisedButton(text="O-", pos_hint={'x': 0.03, "y": 0.18}, size_hint = (0.15,0.04), on_release=self.op2)
+            self.add_widget(self.dne)
+            self.blood_text_input = "O-"
+            
+    def on_enter(self):
+    	self.blood_input_text = ""
+    	self.gender_input_text = ""    
+    	self.apo=MDBoxLayout()
+    	self.ane=MDBoxLayout()
+    	self.bpo=MDBoxLayout()
+    	self.bne=MDBoxLayout()
+    	self.cpo=MDBoxLayout()
+    	self.cne=MDBoxLayout()
+    	self.dpo=MDBoxLayout()
+    	self.dne=MDBoxLayout()
+    	
+    	self.add_widget(self.apo)
+    	self.add_widget(self.ane)
+    	self.add_widget(self.bpo)
+    	self.add_widget(self.bne)
+    	self.add_widget(self.cpo)
+    	self.add_widget(self.cne)
+    	self.add_widget(self.dpo)
+    	self.add_widget(self.dne)
 
     # submit button function
     def submit(self, instance):
@@ -126,7 +410,7 @@ class TalkBot(Screen):
     def on_enter(self):
         hs = self.manager.get_screen('homeScreen')
         self.nam = hs.name_input.text
-        display = MDLabel(text=f"Hello {self.nam}!", pos_hint={'x':0.03, 'y':0.05}, text_color=[0.647, 0.1647, 0.1647], font_style = "H4")
+        display = MDLabel(text=f"Hello {self.nam}!", pos_hint={'x':0.03, 'y':0.05}, text_color=[0.647, 0.1647, 0.1647], font_style = "H6")
         self.add_widget(display)
 
     def init(self, instance):
@@ -139,27 +423,6 @@ class TalkBot(Screen):
                                    pos_hint={'x': 0.65, 'y': 0.02}, on_release=self.changeai)
         self.add_widget(talktoai)
 
-        # Display motivational quote
-        quote = self.get_motivational_quote()
-        quote_label = MDLabel(
-            text=quote,
-            halign="center",
-            pos_hint={'center_x': 0.5, 'center_y': 0.45},
-            theme_text_color="Primary",
-            font_size="18sp",
-            bold=True,  # Adjust the font size as needed
-            markup=True  # Allows you to use markup text
-        )
-        self.add_widget(quote_label)
-
-    def get_motivational_quote(self):
-        try:
-            response = requests.get("https://zenquotes.io/api/random")
-            quote = response.json()[0]['q']  # Extracting the quote text
-            return quote
-        except Exception as e:
-            print(f"Error fetching motivational quote: {e}")
-            return "Stay motivated!"
 
     def change(self, instance):
         self.scren3_screen = self.manager.get_screen('scren3')
@@ -188,6 +451,76 @@ class Scren3(Screen):
         back_button2 = MDRaisedButton(text="Back", text_color=(0, 0, 0, 1), md_bg_color=(1, 1, 1, 1),
                                       pos_hint={'x': 0.1, 'y': 0.9}, on_release=self.back2)
         self.add_widget(back_button2)
+       
+    def on_enter(self):
+        UUID = autoclass('java.util.UUID')
+        self.device_address = '00:22:12:02:49:A5'  # Replace with your Bluetooth device address
+        self.uuid = UUID.fromString('00001101-0000-1000-8000-00805F9B34FB')  # Replace with your UUID
+        self.bluetooth_socket = None
+
+        self.heartbeat_label = MDLabel(text=" - ", halign='center')
+        self.message_label = MDLabel(text="", halign='center')
+        self.connect_button = MDRaisedButton(text="Connect Bluetooth")
+        self.activate_button_1 = MDRaisedButton(text="Activate Buzzer 1")
+        self.activate_button_3 = MDRaisedButton(text="Activate Buzzer 3")
+
+        self.connect_button.bind(on_press=self.connect_bluetooth)
+        self.activate_button_1.bind(on_press=lambda x: self.activate_buzzer(1))
+        self.activate_button_3.bind(on_press=lambda x: self.activate_buzzer(3))
+        
+        heartbeat_value_layout = MDBoxLayout(
+            orientation='horizontal',  # Change the orientation to horizontal
+            padding=10,
+            spacing=5,
+            size_hint_x=1/3,  # Set to 1/3 of the current width
+            md_bg_color=[0.94, 0.94, 0.94, 1],  # Off-white color
+            radius=[10, 10, 10, 10]
+        )
+        heartbeat_value_layout.add_widget(self.heartbeat_label)
+
+        layout = MDBoxLayout(orientation='vertical', spacing=20, padding=20)
+        layout.add_widget(heartbeat_value_layout)
+        layout.add_widget(self.message_label)
+        layout.add_widget(self.connect_button)
+        layout.add_widget(self.activate_button_1)
+        layout.add_widget(self.activate_button_3)
+
+        self.add_widget(layout)
+
+    def connect_bluetooth(self, instance):
+        try:
+            BluetoothAdapter = autoclass('android.bluetooth.BluetoothAdapter')
+            adapter = BluetoothAdapter.getDefaultAdapter()
+            device = adapter.getRemoteDevice(self.device_address)
+            self.bluetooth_socket = device.createRfcommSocketToServiceRecord(self.uuid)
+            self.bluetooth_socket.connect()
+            self.message_label.text = f"Connected to Bluetooth device at address: {self.device_address}"
+            self.activate_button_1.disabled = False
+            self.activate_button_3.disabled = False
+            self.connect_button.disabled = True
+            Clock.schedule_interval(self.read_heartbeat, 1)  # Start reading after a successful connection
+        except Exception as e:
+            self.message_label.text = f"Error connecting to Bluetooth: {e}"
+
+    def read_heartbeat(self, *args):
+        try:
+            if self.bluetooth_socket:
+                heartbeat_value = self.bluetooth_socket.getInputStream().read()
+                if heartbeat_value:
+                    self.heartbeat_label.text = f"Heartbeat Value: {heartbeat_value}"
+        except Exception as e:
+            self.message_label.text = f"Communication error: {e}"
+
+    def activate_buzzer(self, number):
+        try:
+            if self.bluetooth_socket:
+                self.bluetooth_socket.getOutputStream().write(number)
+        except Exception as e:
+            self.message_label.text = f"Error sending signal to activate buzzer: {e}"
+
+    def on_stop(self):
+        if self.bluetooth_socket:
+            self.bluetooth_socket.close()
 
     def back2(self, instance):
         if self.manager.get_screen('talkbot'):
@@ -277,7 +610,7 @@ class Decide(Screen):
                 'chafed'
                 ]
             sad_words=[
-                'melancholy', 'depress', 'sad', 'sadness', 'die', 'death', 'dead', 'end', 'end my life'
+                'melancholy', 'depress', 'sad', 'sadness', 'die', 'death', 'dead', 'end', 'end my life', 'suicide', 'kill', 'harm', 'terminate', 'termination'
                 'depression',
                 'depressed',
                 'sorrow',
@@ -3025,81 +3358,81 @@ class HamAPg3(Screen):
         
         
 class HamResult(Screen):
-    def __init__(self, **kwa):
-        super(HamResult, self).__init__(**kwa)
+	def __init__(self, **kwa):
+		super(HamResult, self).__init__(**kwa)
 
-        bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
-        self.add_widget(bgimg)
-        
-        heading = MDLabel(text="Here are your results!", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
-        self.add_widget(heading)
+		bgimg = Image(source="data/background.png", allow_stretch=True, keep_ratio=False, size_hint=(1, 1))
+		self.add_widget(bgimg)
+		
+		heading = MDLabel(text="Here are your results!", font_style="H4", pos_hint={'x': 0.03, 'y': 0.45})
+		self.add_widget(heading)
 
-        self.box = MDBoxLayout()
-        self.add_widget(self.box)
+		self.box = MDBoxLayout()
+		self.add_widget(self.box)
 
-    def on_enter(self):
-        ham1_screen = self.manager.get_screen('ham1')
-        ham1_score = ham1_screen.hamscore1
+	def on_enter(self):
+		ham1_screen = self.manager.get_screen('ham1')
+		ham1_score = ham1_screen.hamscore1
 
-        ham2_screen = self.manager.get_screen('ham2')
-        ham2_score = ham2_screen.hamscore2
+		ham2_screen = self.manager.get_screen('ham2')
+		ham2_score = ham2_screen.hamscore2
 
-        ham3_screen = self.manager.get_screen('ham3')
-        ham3_score = ham3_screen.hamscore3
+		ham3_screen = self.manager.get_screen('ham3')
+		ham3_score = ham3_screen.hamscore3
 
-        hamA_score = ham1_score + ham2_score + ham3_score
+		hamA_score = ham1_score + ham2_score + ham3_score
 
-        hs = self.manager.get_screen('homeScreen')
-        hs_name = hs.name_input.text
-        hs_age = hs.age_input.text
-        hs_gender = hs.gender_input.text
-        hs_bloodgrp = hs.blood_input.text
-        
-        self.status = ""
-        self.status_img = ""
-        if hamA_score < 7:
-            self.status = "Normal"
-            self.status_img = Image(source="data/four.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch=True)
-        elif hamA_score > 6 and hamA_score < 18:
-            self.status = "Mild Anxiety"
-            self.status_img = Image(source="data/three.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch=True)
-        elif hamA_score > 17 and hamA_score < 25:
-            self.status = "Moderate Anxiety"
-            self.status_img = Image(source="data/two.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch = True)
-        elif hamA_score > 24:
-            self.status = "Severe Anxiety"
-            self.status_img = Image(source="data/one.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch = True)
-        elif hamA_score == 0:
-            self.status = "Perfectly Healthy!"
-            self.status_img = Image(source="data/five.png", size_hint_y = None, height = 200,pos_hint={'x':0.55, 'y':0.1}, allow_stretch = True)
+		hs = self.manager.get_screen('homeScreen')
+		hs_name = hs.name_input.text
+		hs_age = hs.age_input.text
+		hs_gender = hs.gender_input_text
+		hs_bloodgrp = hs.blood_input_text
+		
+		self.status = ""
+		self.status_img = ""
+		if hamA_score < 7:
+		    self.status = "Normal"
+		    self.status_img = Image(source="data/four.png", pos_hint={'x':0.55, 'y':0.1})
+		elif hamA_score > 6 and hamA_score < 18:
+		    self.status = "Mild Anxiety"
+		    self.status_img = Image(source="data/three.png", pos_hint={'x':0.55, 'y':0.1})
+		elif hamA_score > 17 and hamA_score < 25:
+		    self.status = "Moderate Anxiety"
+		    self.status_img = Image(source="data/two.png", pos_hint={'x':0.55, 'y':0.1})
+		elif hamA_score > 24:
+		    self.status = "Severe Anxiety"
+		    self.status_img = Image(source="data/one.png", pos_hint={'x':0.55, 'y':0.1})
+		elif hamA_score == 0:
+		    self.status = "Perfectly Healthy!"
+		    self.status_img = Image(source="data/five.png",pos_hint={'x':0.3, 'y':0.6})
 
-        self.name_box = MDLabel(text=f"Name:\n{hs_name}", font_style="H6", pos_hint={'x': 0.03, 'y': 0.3})
-        self.age_box = MDLabel(text=f"Age: {hs_age}", font_style="H6", pos_hint = {'x':0.03,'y':0.15})
-        self.gender_box = MDLabel(text=f"Gender: {hs_gender}", font_style="H6", pos_hint={'x':0.03,'y':0})
-        self.blood_box = MDLabel(text=f"Blood Group: {hs_bloodgrp}", font_style="H6", pos_hint={'x':0.03,'y':-0.15})
-        self.scorebox = MDLabel(text=f"Mental Health\nStatus:\n{self.status}", font_style = "H6", pos_hint={'x':0.5,'y':0.3})
-        
-        self.add_widget(self.name_box)
-        self.add_widget(self.age_box)
-        self.add_widget(self.gender_box)
-        self.add_widget(self.blood_box)
-        self.add_widget(self.scorebox)    
-        self.add_widget(self.status_img)    
-        	
-        home = MDRaisedButton(text="Home", pos_hint={'x':0.4,'y':0.03}, on_release=self.home)
-        self.add_widget(home)
-        
-    def home(self, instance):
-        self.manager.current = "talkbot"
-        
-    def on_leave(self):
-        self.status_img = ""
-        self.status = ""
-    	
-        self.remove_widget(self.name_box)
-        self.remove_widget(self.age_box)
-        self.remove_widget(self.gender_box)
-        self.remove_widget(self.scorebox)
+		self.name_box = MDLabel(text=f"Name:\n{hs_name}", font_style="H6", pos_hint={'x': 0.03, 'y': 0.3})
+		self.age_box = MDLabel(text=f"Age: {hs_age}", font_style="H6", pos_hint = {'x':0.03,'y':0.15})
+		self.gender_box = MDLabel(text=f"Gender: {hs_gender}", font_style="H6", pos_hint={'x':0.03,'y':0})
+		self.blood_box = MDLabel(text=f"Blood Group: {hs_bloodgrp}", font_style="H6", pos_hint={'x':0.03,'y':-0.15})
+		self.scorebox = MDLabel(text=f"Mental Health\nStatus:\n{self.status}", font_style = "H6", pos_hint={'x':0.5,'y':0.3})
+		
+		self.add_widget(self.name_box)
+		self.add_widget(self.age_box)
+		self.add_widget(self.gender_box)
+		self.add_widget(self.blood_box)
+		self.add_widget(self.scorebox)    
+		self.add_widget(self.status_img)    
+		    
+		home = MDRaisedButton(text="Home", pos_hint={'x':0.4,'y':0.03}, on_release=self.home)
+		self.add_widget(home)
+		
+	def home(self, instance):
+		self.manager.current = "talkbot"
+		
+	def on_leave(self):
+		self.status_img = ""
+		self.status = ""
+		
+		self.remove_widget(self.name_box)
+		self.remove_widget(self.age_box)
+		self.remove_widget(self.gender_box)
+		self.remove_widget(self.scorebox)
 
 
 class aiResult(Screen):
@@ -3133,26 +3466,24 @@ class aiResult(Screen):
         hs = self.manager.get_screen('homeScreen')
         hs_name = hs.name_input.text
         hs_age = hs.age_input.text
-        hs_gender = hs.gender_input.text
-        hs_bloodgrp = hs.blood_input.text
         
         self.status = ""
         self.status_img = ""
         if ai_score < 7:
             self.status = "Normal"
-            self.status_img = Image(source="data/four.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch=True)
+            self.status_img = Image(source="data/four.png", size_hint_x=None, height = 200, pos_hint={'x':0.5, 'y':0.4})
         elif ai_score > 6 and ai_score < 18:
             self.status = "Mild Depression"
-            self.status_img = Image(source="data/three.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch=True)
+            self.status_img = Image(source="data/three.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1})
         elif ai_score > 17 and ai_score < 25:
             self.status = "Moderate Depression"
-            self.status_img = Image(source="data/two.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/two.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1})
         elif ai_score > 24:
             self.status = "Severe Depression"
-            self.status_img = Image(source="data/one.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/one.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1})
         elif ai_score == 0:
             self.status = "Perfectly Healthy!"
-            self.status_img = Image(source="data/five.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1}, allow_stretch = True)
+            self.status_img = Image(source="data/five.png", size_hint_x=None, height = 200, pos_hint={'x':0.55, 'y':0.1})
 
         self.name_box = MDLabel(text=f"Name:\n{hs_name}", font_style="H6", pos_hint={'x': 0.03, 'y': 0.3})
         self.age_box = MDLabel(text=f"Age: {hs_age}", font_style="H6", pos_hint = {'x':0.03,'y':0.15})
