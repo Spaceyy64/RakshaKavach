@@ -49,7 +49,8 @@ while True:
         model="text-davinci-003",
         prompt=conversation,
         temperature=0.3,  # Adjust this value to control the randomness of the response
-        max_tokens=256,
+        max_tokens=128,
+        stream=true,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0
