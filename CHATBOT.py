@@ -1,21 +1,27 @@
 import subprocess
-import speech_recognition as sr
+import speech_recognition as sr                     
 from openai import OpenAI
 from pathlib import Path 
 from IPython.display import Audio
 import sounddevice as sd
 import numpy as np 
 import librosa
+import pyautogui
  
  
-api_key = "YOUR_API_KEY"
+api_key = "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"
+
+pyautogui.press("volumeup",30)
+#pyautogui.press("volumedown", 20)
+
  
 r = sr.Recognizer()
-mic = sr.Microphone(device_index=1)
+mic = sr.Microphone(device_index=0)
  
 conversation = ""
-user_name = "User_1234"
-bot_name = "Zaddy_HogRider"
+user_name = "Adi"
+bot_name = "Bliss Buddy"
+
 
  
 while True:
@@ -36,11 +42,12 @@ while True:
     print(f"User said: {user_input}")
  
     # Check if the user wants to exit
-    if "bye-bye bot" in user_input.lower():
+    if "bye-bye" in user_input.lower():
         print("Goodbye!")
-        break  # Exit the loop and terminate the program
- 
-    # Process user input as a regular conversation with the chatbot
+        break  # Exit the loop and terminate the programe
+
+
+
     prompt = user_name + ":" + user_input + "\n" + bot_name + ":"
     conversation += prompt
  
@@ -48,9 +55,8 @@ while True:
     response = client.completions.create(
         model="text-davinci-003",
         prompt=conversation,
-        temperature=0.3,  # Adjust this value to control the randomness of the response
-        max_tokens=128,
-        stream=true,
+        temperature=1,  # Adjust this value to control the randomness of the response
+        max_tokens=64,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0
@@ -60,10 +66,11 @@ while True:
     response_str = response_str.split(user_name + ":", 1)[0].split(bot_name + ":", 1)[0]
  
     conversation += response_str + "\n"
-    print(response_str)
- 
+    print(response_str)                
+                               
+
     speech_file_path = Path(__file__).parent / "speech.wav"
- 
+    client = OpenAI(api_key=api_key)
     response = client.audio.speech.create(
         model="tts-1",
         voice="nova",
