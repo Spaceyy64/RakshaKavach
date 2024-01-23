@@ -46,7 +46,7 @@ while True:
  
     client = OpenAI(api_key=api_key)
     response = client.completions.create(
-        model="text-davinci-003",
+        model="gpt-3.5-turbo-instruct",
         prompt=conversation,
         temperature=0.3,  # Adjust this value to control the randomness of the response
         max_tokens=128,
